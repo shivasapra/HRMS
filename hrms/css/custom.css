@@ -1,0 +1,239 @@
+.brand-logo {
+    margin-top: 0.5rem;
+}
+.employee-details .list-group-item {
+    border: 0;
+    font-size: 15px;
+    text-align:center;
+    border-radius:0;
+}
+.skills{
+    list-style:none;
+    margin:0;
+    padding:0
+}
+.skills li {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #b5852b;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-right: 3px;
+    color: #fff;
+}
+.custom-file-upload{
+    width: 100%;
+    background-color: #f1f1f1;
+    border: 2px dashed #2da9f1;
+    text-align: center;
+    height: 80px;
+    font-size: 1rem !important;
+    padding-top: 1.7rem;
+    cursor: pointer;
+}
+.tabs-design{
+    margin-top:1rem;
+    margin-bottom:1.7rem;
+}
+.tabs-design .nav-link {
+    font-size: 1rem;
+    font-family: 'Titillium Web', sans-serif;
+    padding:0.7rem 1.2rem;
+}
+.tabs-design .nav-link.active, .tabs-design .nav-item.show .nav-link {
+    border: 0;
+    border-bottom: 3px solid #ff8100;
+}
+.bg-light-gray{
+    background-color: #f9f9f9;
+}
+.custom-circle-btn {
+    background-color: #f1f1f1;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    display: block;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 8px;
+    color:#19243e;
+}
+.form-control {
+    border-radius: 3px;
+    box-shadow: inset 0 0px 3px rgba(0,0,0,0.05);
+}
+select option{
+    font-size:0.9rem;
+    padding:0.5rem 1rem;
+}
+.after-none::after{
+    content: none;
+}
+.dropdown-ul{
+    list-style:none;
+    display:block;
+    margin:0;
+    padding:0
+}
+.dropdown-ul li{
+    display:block;
+}
+.dropdown-ul li a{
+    font-size: 15px;
+    display: block;
+    padding: 2px 12px;
+    text-decoration: none;
+    color: #333;
+    margin: 0;
+}
+.dropdown-ul li a:hover{
+    background-color:#b48429;
+    color:#fff;
+}
+.hover-underline-none:hover {
+    text-decoration: none;
+}
+.w-350{
+    width:350px;
+}
+.h-445{
+    max-height:445px;
+    overflow:auto;
+}
+/* width */
+.h-445::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.h-445::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+.h-445::-webkit-scrollbar-thumb {
+    background: #808080;
+}
+
+/* Handle on hover */
+.h-445::-webkit-scrollbar-thumb:hover {
+    background: #333;
+}
+.table-p-10 th, .table-p-10 td{
+    padding:10px;
+}
+#salary_details p{
+    line-height:24px;
+    font-size:15px;
+}
+.holidays_list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    font-family:'Josefin Sans', sans-serif;
+}
+.holidays_list li{
+    display:inline-block;
+    width:100px;
+    text-align:center;
+    font-size:15px;
+    vertical-align:top;
+}
+.holidays_list li span{
+    display:block;
+}
+.holidays_list li a{
+    display:block;
+    width:45px;
+    height:45px;
+    border-radius:100%;
+    text-align:center;
+    font-size:1rem;
+    padding-top:10px;
+    margin:0 auto 8px auto;
+    font-weight:700;
+    color:#fff;
+}
+.holidays_list h5, .holidays_list h4{
+    font-size:15px;
+}
+.holidays_list li a:hover{
+    text-decoration:none;
+}
+.font-weight-600{
+    font-weight:600;
+}
+.font19{
+    font-size:19px;
+}
+.letter-scroll-hide::-webkit-scrollbar {
+    width: 5px;
+}
+/* Track */
+.letter-scroll-hide::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+.letter-scroll-hide::-webkit-scrollbar-thumb {
+    background: #808080;
+}
+
+/* Handle on hover */
+.letter-scroll-hide::-webkit-scrollbar-thumb:hover {
+    background: #333;
+}
+.input-lg .form-check-label .input-helper:before{
+    width:23px;
+    height:23px;
+    box-shadow:0px 0px 15px rgba(0,0,0,0.02);
+    cursor:pointer;
+}
+.input-lg .form-check-label input:checked + .input-helper:after{
+    width:20px;
+    line-height:0;
+    left:1.5px;
+}
+.table-pagination-hide .dataTables_info, .table-pagination-hide .dataTables_paginate{
+    display: none;
+}
+.text-dark-red{
+    color:#e65251;
+}
+.upcoming-birthday img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+.upcoming-birthday .media {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f1f1f1;
+    margin-bottom: 15px;
+}
+.h-447{
+    max-height:447px;
+    overflow:auto;
+}
+.custom-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+/* Track */
+.custom-scroll::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #808080;
+}
+
+/* Handle on hover */
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #333;
+}
+@media only screen and (max-width:768px){
+    .content-wrapper{
+        padding:0;
+    }
+
+}
