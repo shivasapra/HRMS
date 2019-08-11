@@ -1,80 +1,312 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HRMS | FORBCORP</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{asset('app/vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('app/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{asset('app/vendors/css/vendor.bundle.addons.css')}}">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{asset('app/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('app/css/custom.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app/css/ui.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('app/css/lightbox.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('app/css/pignose.calendar.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('app/vendors/css/jquery.dataTables.css')}}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{asset('app/images/favicon.png')}}"/>
+    @yield('styles')
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+                <a class="navbar-brand brand-logo" href="">
+                    <img src="{{asset('app/images/forbcorp.png')}}" alt="FORBCORP Logo" />
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                <a class="navbar-brand brand-logo-mini" href="">
+                    <img src="{{asset('app/images/forbcorp.png')}}" alt="FORBCORP Logo" />
+                </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center">
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-file-document-box"></i>
+                            <span class="count">7</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                            <div class="dropdown-item">
+                                <p class="mb-0 font-weight-normal float-left">You have 7 unread mails
+                                </p>
+                                <span class="badge badge-info badge-pill float-right">View all</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="{{asset('app/images/faces/face4.jpg')}}" alt="image" class="profile-pic">
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <div class="preview-item-content flex-grow">
+                                    <h6 class="preview-subject ellipsis font-weight-medium text-dark">David Grey
+                                        <span class="float-right font-weight-light small-text">1 Minutes ago</span>
+                                    </h6>
+                                    <p class="font-weight-light small-text">
+                                        The meeting is cancelled
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="{{asset('app/images/faces/face2.jpg')}}" alt="image" class="profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow">
+                                    <h6 class="preview-subject ellipsis font-weight-medium text-dark">Tim Cook
+                                        <span class="float-right font-weight-light small-text">15 Minutes ago</span>
+                                    </h6>
+                                    <p class="font-weight-light small-text">
+                                        New product launch
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="{{asset('app/images/faces/face3.jpg')}}" alt="image" class="profile-pic">
+                                </div>
+                                <div class="preview-item-content flex-grow">
+                                    <h6 class="preview-subject ellipsis font-weight-medium text-dark"> Johnson
+                                        <span class="float-right font-weight-light small-text">18 Minutes ago</span>
+                                    </h6>
+                                    <p class="font-weight-light small-text">
+                                        Upcoming board meeting
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                            <i class="mdi mdi-bell"></i>
+                            <span class="count">4</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                            <a class="dropdown-item">
+                                <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
+                                </p>
+                                <span class="badge badge-pill badge-warning float-right">View all</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="mdi mdi-alert-circle-outline mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-medium text-dark">Application Error</h6>
+                                    <p class="font-weight-light small-text">
+                                        Just now
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-warning">
+                                        <i class="mdi mdi-comment-text-outline mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-medium text-dark">Settings</h6>
+                                    <p class="font-weight-light small-text">
+                                        Private message
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-info">
+                                        <i class="mdi mdi-email-outline mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-medium text-dark">New user registration</h6>
+                                    <p class="font-weight-light small-text">
+                                        2 days ago
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown d-none d-xl-inline-block">
+                        <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <span class="profile-text">Richard V.Welsh !</span>
+                            <img class="img-xs rounded-circle" src="{{asset('app/images/faces/face1.jpg')}}" alt="Profile image">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown pb-0" aria-labelledby="UserDropdown">
+                            <a href="" class="dropdown-item pt-3 pb-3">Sign Out</a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
             </div>
         </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <h4 class="text-center pt-4 pb-4 pl-2 pr-2 mb-0 text-white">Folks On Royal Break</h4>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">
+                            <i class="menu-icon mdi mdi-home"></i>
+                            <span class="menu-title">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add-employee.php">
+                            <i class="menu-icon mdi mdi-account-plus"></i>
+                            <span class="menu-title">Add Employee</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view-employee.php">
+                            <i class="menu-icon mdi mdi-account-multiple"></i>
+                            <span class="menu-title">View Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="leave-applications.php">
+                            <i class="menu-icon mdi mdi-file-document-box"></i>
+                            <span class="menu-title">Leave Applications</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="attendance.php">
+                            <i class="menu-icon mdi mdi-table"></i>
+                            <span class="menu-title">Attendance</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reports.php">
+                            <i class="menu-icon mdi mdi-chart-line"></i>
+                            <span class="menu-title">Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="goals.php">
+                            <i class="menu-icon mdi mdi-trophy-variant"></i>
+                            <span class="menu-title">Goals</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="holidays.php">
+                            <i class="menu-icon mdi mdi-calendar-check"></i>
+                            <span class="menu-title">Holidays</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="official-letters.php">
+                            <i class="menu-icon mdi mdi-file-document"></i>
+                            <span class="menu-title">Official Letters</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">
+                            <i class="menu-icon mdi mdi-account"></i>
+                            <span class="menu-title">Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="settings.php">
+                            <i class="menu-icon mdi mdi-settings"></i>
+                            <span class="menu-title">Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="organization.php">
+                            <i class="menu-icon mdi mdi-home-modern"></i>
+                            <span class="menu-title">Organization</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        @yield('content')
+                    </div>
+                </div>
+            <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+            <div class="container-fluid clearfix">
+                    <span class="text-gray d-block text-center text-sm-left d-sm-inline-block">Copyright © <?php echo date('Y');?>
+                    <a href="https://www.forbcorp.com/" target="_blank"><b>FORBCORP</b></a>. All Rights Reserved.</span>
+            </div>
+        </footer>
+    <!-- partial -->
     </div>
+    <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <script src="{{asset('app/vendors/js/vendor.bundle.base.js')}}"></script>
+    <script src="{{asset('app/vendors/js/vendor.bundle.addons.js')}}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{{asset('app/js/off-canvas.js')}}"></script>
+    <script src="{{asset('app/js/misc.js')}}"></script>
+    <script src="{{asset('app/js/chart.js')}}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{{asset('app/js/dashboard.js')}}"></script>
+    <script src="{{asset('app/js/lightbox.min.js')}}"></script>
+    <script src="{{asset('app/js/pignose.calendar.full.min.js')}}"></script>
+    <script src="{{asset('app/vendors/js/jquery.dataTables.js')}}"></script>
+
+
+    <!-- End custom js for this page-->
+
+    <script>
+        $(document).ready(function() {
+            $('#my_table').DataTable();
+        } );
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#remove_disabled_class").click(function () {
+                $('.disabled_attribute').removeAttr("disabled");
+                $('#remove_disabled_class').hide();
+                document.getElementById("save_details").style.display = "block";
+            })
+        });
+    </script>
+    <script>
+        $(function() {
+            $('.calendar').pignoseCalendar({
+                theme: 'blue' // light, dark, blue
+            });
+        });
+    </script>
+
 </body>
 </html>
