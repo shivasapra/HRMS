@@ -15,3 +15,14 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+Route::group(['middleware' => ['auth']], function () {
+    
+
+    Route::group(['prefix' => 'employee/'], function () {
+        Route::get('add','EmployeeController@add')->name('employee.add');
+
+        Route::get('index','EmployeeController@index')->name('employee.index');
+    });
+
+
+});

@@ -186,13 +186,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="add-employee.php">
+                        <a class="nav-link" href="{{route('employee.add')}}">
                             <i class="menu-icon mdi mdi-account-plus"></i>
                             <span class="menu-title">Add Employee</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="view-employee.php">
+                        <a class="nav-link" href="{{route('employee.index')}}">
                             <i class="menu-icon mdi mdi-account-multiple"></i>
                             <span class="menu-title">View Employees</span>
                         </a>
