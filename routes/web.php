@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('add','EmployeeController@add')->name('employee.add');
 
         Route::get('index','EmployeeController@index')->name('employee.index');
+
+        Route::get('details','EmployeeController@details')->name('employee.details');
     });
 
 
