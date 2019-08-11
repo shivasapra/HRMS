@@ -152,11 +152,19 @@
                     </li>
                     <li class="nav-item dropdown d-none d-xl-inline-block">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <span class="profile-text">Richard V.Welsh !</span>
+                            <span class="profile-text">{{Auth::user()->name}}</span>
                             <img class="img-xs rounded-circle" src="{{asset('app/images/faces/face1.jpg')}}" alt="Profile image">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown pb-0" aria-labelledby="UserDropdown">
-                            <a href="" class="dropdown-item pt-3 pb-3">Sign Out</a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown pb-0" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item pt-3 pb-3" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </li>
                 </ul>
@@ -172,7 +180,7 @@
                 <h4 class="text-center pt-4 pb-4 pl-2 pr-2 mb-0 text-white">Folks On Royal Break</h4>
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link" href="{{route('home')}}">
                             <i class="menu-icon mdi mdi-home"></i>
                             <span class="menu-title">Home</span>
                         </a>
@@ -246,11 +254,10 @@
                 </ul>
             </nav>
 
-                <div class="main-panel">
-                    <div class="content-wrapper">
-                        @yield('content')
-                    </div>
-                </div>
+    <div class="main-panel">
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
             <!-- partial:partials/_footer.html -->
         <footer class="footer">
             <div class="container-fluid clearfix">
