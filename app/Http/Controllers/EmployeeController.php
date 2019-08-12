@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     }
 
     public function index(){
-        return view('employee.index');
+        return view('employee.index')->with('employees',Employee::all());
     }
 
     public function details(){
@@ -23,7 +23,6 @@ class EmployeeController extends Controller
     }
 
     public function store(Request $request, Employee $employee, JobDetails $job_details){
-
         if($request->email){
             $user = new User;
             $user->email = $request->email;
@@ -38,13 +37,13 @@ class EmployeeController extends Controller
         $employee->last_name = $request->last_name;
         $employee->middle_name = $request->middle_name;
 
-        if($request->hasFile('avatar')){
-            $avatar = $request->avatar;
-            $avatar_new_name = time().$avatar->getClientOriginalName();
-            $avatar->move('uploads/profile',$avatar_new_name);
-            $employee->avatar = 'uploads/profile/'.$avatar_new_name;
-            $employee->save();
-        }
+        
+        $avatar = $request->avatar;
+        $avatar_new_name = time().$avatar->getClientOriginalName();
+        $avatar->move('uploads/profile',$avatar_new_name);
+        $employee->avatar = 'uploads/profile/'.$avatar_new_name;
+        
+        
 
         $test_employee = Employee::where('unique_id','FORB0001')->get();
         if ($test_employee->count()) {

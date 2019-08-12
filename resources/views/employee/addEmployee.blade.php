@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body" id="load">
                     <h2 class="text-default mb-4 h3">Add Employee</h2>
-                    <form method="post" id="form" enctype="multipart/form-data" onsubmit="store(this);" action="javascript:void(0)">
+                    <form method="post" id="myForm" enctype="multipart/form-data" action="{{route('employee.store')}}">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
@@ -103,13 +103,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Employee Photo*</label>
-                                    <input type="file" class="form-control" id="avatar" name="avatar" accept="image/.jpg, .jpeg, .png"/ required>
+                                    <input type="file" class="form-control" id="avatar" name="avatar" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Employment Status*</label>
-                                    <input type="text" class="form-control" id="employment_status" placeholder="Enter Employment Status" name="employment_status"/ required>
+                                    <input type="text" class="form-control" id="employment_status" placeholder="Enter Employment Status" name="employment_status" required>
                                 </div>
                             </div>
                         </div>
@@ -144,9 +144,9 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control add" id="status" name="status">
-                                        <option>---Select---</option>
-                                        <option>Enabled</option>
-                                        <option>Disabled</option>
+                                        <option value="">---Select---</option>
+                                        <option value="enabled">Enabled</option>
+                                        <option value="disabled">Disabled</option>
                                     </select>
                                 </div>
                             </div>
@@ -166,6 +166,8 @@
     </div>
 @endsection
 @section('scripts')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
     <script>
         var i = 2;
         function addRequired(){
@@ -177,23 +179,39 @@
             i = i + 1;
         }
     </script>
-
-    <script>
-        function store(test){
-            $.ajax({ 
-                type: "POST",
-                url: 'http://127.0.0.1:8000/employee/store',
-                data: $("#form").serialize(),
-                success: function(data) {
+<script> 
+        $(document).ready(function() { 
+            $('#myForm').ajaxForm(function(data) { 
                     $("#load").load(" #load > *");
                     swal({
                         title: `Employee Added Successfully` ,
                         text: `Employee Id: ${data['unique_id']} \n Name: ${data['first_name']} ${data['last_name']} `,
                         icon: 'success',
                     });
+            }); 
+        }); 
+    </script> 
+    <script>
+        
+        // function store(test){
+        //     $('#form').ajaxForm(function() { 
+        //         alert("Thank you for your comment!"); 
+        //     }); 
+            // $.ajax({ 
+            //     type: "POST",
+            //     url: 'http://127.0.0.1:8000/employee/store',
+            //     data: $("#form").serialize(),
+            //     success: function(data) {
+            //         console.log(data);
+            //         $("#load").load(" #load > *");
+            //         swal({
+            //             title: `Employee Added Successfully` ,
+            //             text: `Employee Id: ${data['unique_id']} \n Name: ${data['first_name']} ${data['last_name']} `,
+            //             icon: 'success',
+            //         });
 
-                }
-            });   
+            //     }
+            // });   
         }
     </script>
 @endsection

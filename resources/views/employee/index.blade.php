@@ -19,15 +19,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td><img src="images/profile.jpg" alt="" class="img-fluid"/></td>
-                                    <td>10555250</td>
-                                    <td>Aaditya Nagarath</td>
-                                    <td>Business Marketing Manager</td>
-                                    <td>Full Time Permanent</td>
-                                    <td><a href="{{route('employee.details')}}" class="btn btn-primary">View Details</a></td>
-                                </tr>
+                                @foreach($employees as $employee)
+                                    <tr>
+                                        <th>{{$loop->index + 1}}.</th>
+                                        <td><img src="{{asset($employee->avatar)}}" alt="" class="img-fluid"/></td>
+                                        <td>{{$employee->unique_id}}</td>
+                                        <td>{{$employee->first_name.' '.$employee->last_name}}</td>
+                                        <td>{{$employee->JobDetails->job_title}}</td>
+                                        <td>{{$employee->JobDetails->employment_status}}</td>
+                                        <td><a href="{{route('employee.details')}}" class="btn btn-primary">View Details</a></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
