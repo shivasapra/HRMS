@@ -314,6 +314,23 @@
             });
         });
     </script>
-
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <!-- Compiled and minified CSS -->
+ 
+     <!-- Compiled and minified JavaScript -->
+     <script>
+        
+         setTimeout(function() {
+             @if(session('notify'))
+             swal({
+                 title: '{{session('notify_title')}}',
+                 text: '{{session('notify_text')}}',
+                 icon: '{{session('notify_type')}}'
+             });
+             @endif
+         }, 200);
+     </script>
+     {{ forgetNotification() }}
+    @yield('scripts')
 </body>
 </html>

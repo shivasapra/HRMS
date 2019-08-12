@@ -5,123 +5,118 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="text-default mb-4 h3">Add Employee</h2>
-                    <form method="POST">
+                    <form method="post" id="form" enctype="multipart/form-data" onsubmit="store(this);" action="javascript:void(0)">
+                        @csrf
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>First Name*</label>
-                                    <input type="text" placeholder="Enter First Name" class="form-control" name="first_name" required/>
+                                    <input type="text" id="first_name" placeholder="Enter First Name" class="form-control" name="first_name" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Middle Name</label>
-                                    <input type="text" placeholder="Enter Middle Name" class="form-control" name="middle_name"/>
+                                    <input type="text" id="middle_name" placeholder="Enter Middle Name" class="form-control" name="middle_name"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Last Name*</label>
-                                    <input type="text" placeholder="Enter Last Name" class="form-control" name="last_name" required/>
+                                    <input type="text" id="last_name" placeholder="Enter Last Name" class="form-control" name="last_name" required/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Employee ID</label>
-                                    <input type="text" placeholder="" class="form-control" name="employee_id" value="1526600" disabled/>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Department</label>
-                                    <select class="form-control" name="department">
-                                        <option value="0">-- Select --</option>
-                                        <option value="0">Accountant</option>
-                                        <option value="0">Collection Manager</option>
-                                        <option value="0">HR Manager</option>
-                                        <option value="0">HR Executive</option>
-                                        <option value="0">Branch Marketing Manager (BMM)</option>
-                                        <option value="0">Tele Marketing Manager (TMM)</option>
-                                        <option value="0">Tele Marketing Supervisor (TMS)</option>
-                                        <option value="0">Tele Marketing Executive (TME)</option>
-                                        <option value="0">Data Operator</option>
-                                        <option value="0">OPC Supervisor</option>
-                                        <option value="0">OPC Executive</option>
-                                        <option value="0">Relationship Manager</option>
-                                        <option value="0">MRD Executive</option>
-                                        <option value="0">Corporate Operations</option>
-                                        <option value="0">Operations Head</option>
-                                        <option value="0">Unit Manager</option>
-                                        <option value="0">Operation Team Manager</option>
-                                        <option value="0">Sr. Travel Consultant</option>
-                                        <option value="0">Travel Consultant</option>
-                                        <option value="0">Cheif Sale Officer</option>
-                                        <option value="0">Relational Manager</option>
-                                        <option value="0">Branch Manager</option>
-                                        <option value="0">Unit Manager</option>
-                                        <option value="0">Sale Team Manager</option>
-                                        <option value="0">Take Over Manager</option>
-                                        <option value="0">Senior Holiday Consultant</option>
-                                        <option value="0">Holiday Consultant</option>
-                                        <option value="0">Business Develop Manager</option>
-                                        <option value="0">Business Develop Executive</option>
+                                    <label>Department*</label>
+                                    <select class="form-control" id="department" name="department" required>
+                                        <option value="">-- Select --</option>
+                                        <option value="Accountant">Accountant</option>
+                                        <option value="Collection Manager">Collection Manager</option>
+                                        <option value="HR Manager">HR Manager</option>
+                                        <option value="HR Executive">HR Executive</option>
+                                        <option value="Branch Marketing Manager (BMM)">Branch Marketing Manager (BMM)</option>
+                                        <option value="Tele Marketing Manager (TMM)">Tele Marketing Manager (TMM)</option>
+                                        <option value="Tele Marketing Supervisor (TMS)">Tele Marketing Supervisor (TMS)</option>
+                                        <option value="Tele Marketing Executive (TME)">Tele Marketing Executive (TME)</option>
+                                        <option value="Data Operator">Data Operator</option>
+                                        <option value="OPC Supervisor">OPC Supervisor</option>
+                                        <option value="OPC Executive">OPC Executive</option>
+                                        <option value="Relationship Manager">Relationship Manager</option>
+                                        <option value="MRD Executive">MRD Executive</option>
+                                        <option value="Corporate Operations">Corporate Operations</option>
+                                        <option value="Operations Head">Operations Head</option>
+                                        <option value="Unit Manager">Unit Manager</option>
+                                        <option value="Operation Team Manager">Operation Team Manager</option>
+                                        <option value="Sr. Travel Consultant">Sr. Travel Consultant</option>
+                                        <option value="Travel Consultant">Travel Consultant</option>
+                                        <option value="Cheif Sale Officer">Cheif Sale Officer</option>
+                                        <option value="Relational Manager">Relational Manager</option>
+                                        <option value="Branch Manager">Branch Manager</option>
+                                        <option value="Unit Manager">Unit Manager</option>
+                                        <option value="Sale Team Manager">Sale Team Manager</option>
+                                        <option value="Take Over Manager">Take Over Manager</option>
+                                        <option value="Senior Holiday Consultant">Senior Holiday Consultant</option>
+                                        <option value="Holiday Consultant">Holiday Consultant</option>
+                                        <option value="Business Develop Manager">Business Develop Manager</option>
+                                        <option value="Business Develop Executive">Business Develop Executive</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Job Title</label>
-                                    <select class="form-control" name="job_title">
-                                        <option value="0">-- Select --</option>
-                                        <option value="0">Accountant</option>
-                                        <option value="0">Collection Manager</option>
-                                        <option value="0">HR Manager</option>
-                                        <option value="0">HR Executive</option>
-                                        <option value="0">Branch Marketing Manager (BMM)</option>
-                                        <option value="0">Tele Marketing Manager (TMM)</option>
-                                        <option value="0">Tele Marketing Supervisor (TMS)</option>
-                                        <option value="0">Tele Marketing Executive (TME)</option>
-                                        <option value="0">Data Operator</option>
-                                        <option value="0">OPC Supervisor</option>
-                                        <option value="0">OPC Executive</option>
-                                        <option value="0">Relationship Manager</option>
-                                        <option value="0">MRD Executive</option>
-                                        <option value="0">Corporate Operations</option>
-                                        <option value="0">Operations Head</option>
-                                        <option value="0">Unit Manager</option>
-                                        <option value="0">Operation Team Manager</option>
-                                        <option value="0">Sr. Travel Consultant</option>
-                                        <option value="0">Travel Consultant</option>
-                                        <option value="0">Cheif Sale Officer</option>
-                                        <option value="0">Relational Manager</option>
-                                        <option value="0">Branch Manager</option>
-                                        <option value="0">Unit Manager</option>
-                                        <option value="0">Sale Team Manager</option>
-                                        <option value="0">Take Over Manager</option>
-                                        <option value="0">Senior Holiday Consultant</option>
-                                        <option value="0">Holiday Consultant</option>
-                                        <option value="0">Business Develop Manager</option>
-                                        <option value="0">Business Develop Executive</option>
+                                    <label>Job Title*</label>
+                                    <select class="form-control" id="job_title" name="job_title" required>
+                                        <option value="">-- Select --</option>
+                                        <option value="Accountant">Accountant</option>
+                                        <option value="Collection Manager">Collection Manager</option>
+                                        <option value="HR Manager">HR Manager</option>
+                                        <option value="HR Executive">HR Executive</option>
+                                        <option value="Branch Marketing Manager (BMM)">Branch Marketing Manager (BMM)</option>
+                                        <option value="Tele Marketing Manager (TMM)">Tele Marketing Manager (TMM)</option>
+                                        <option value="Tele Marketing Supervisor (TMS)">Tele Marketing Supervisor (TMS)</option>
+                                        <option value="Tele Marketing Executive (TME)">Tele Marketing Executive (TME)</option>
+                                        <option value="Data Operator">Data Operator</option>
+                                        <option value="OPC Supervisor">OPC Supervisor</option>
+                                        <option value="OPC Executive">OPC Executive</option>
+                                        <option value="Relationship Manager">Relationship Manager</option>
+                                        <option value="MRD Executive">MRD Executive</option>
+                                        <option value="Corporate Operations">Corporate Operations</option>
+                                        <option value="Operations Head">Operations Head</option>
+                                        <option value="Unit Manager">Unit Manager</option>
+                                        <option value="Operation Team Manager">Operation Team Manager</option>
+                                        <option value="Sr. Travel Consultant">Sr. Travel Consultant</option>
+                                        <option value="Travel Consultant">Travel Consultant</option>
+                                        <option value="Cheif Sale Officer">Cheif Sale Officer</option>
+                                        <option value="Relational Manager">Relational Manager</option>
+                                        <option value="Branch Manager">Branch Manager</option>
+                                        <option value="Unit Manager">Unit Manager</option>
+                                        <option value="Sale Team Manager">Sale Team Manager</option>
+                                        <option value="Take Over Manager">Take Over Manager</option>
+                                        <option value="Senior Holiday Consultant">Senior Holiday Consultant</option>
+                                        <option value="Holiday Consultant">Holiday Consultant</option>
+                                        <option value="Business Develop Manager">Business Develop Manager</option>
+                                        <option value="Business Develop Executive">Business Develop Executive</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Employee Photo</label>
-                                    <input type="file" class="form-control" name="employee_id" accept="image/.jpg, .jpeg, .png"/>
+                                    <label>Employee Photo*</label>
+                                    <input type="file" class="form-control" id="avatar" name="avatar" accept="image/.jpg, .jpeg, .png"/ required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Employment Status</label>
-                                    <input type="text" class="form-control" placeholder="Enter Employment Status" name="employment_status"/>
+                                    <label>Employment Status*</label>
+                                    <input type="text" class="form-control" id="employment_status" placeholder="Enter Employment Status" name="employment_status"/ required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <h2 class="text-default mb-4 h4 mt-4">Create Login Details <i data-toggle="collapse" data-target="#show_login_details" class="menu-icon mdi mdi-plus btn btn-primary pl-2 pr-2"></i></h2>
+                                    <h2 class="text-default mb-4 h4 mt-4">Create Login Details <i data-toggle="collapse" onclick="addRequired();" data-target="#show_login_details" class="menu-icon mdi mdi-plus btn btn-primary pl-2 pr-2"></i></h2>
                                 </div>
                             </div>
                         </div>
@@ -129,26 +124,26 @@
                             <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>User Name*</label>
-                                    <input type="text" placeholder="Enter User Name" class="form-control" name="user_name" required/>
+                                    <label>Email*</label>
+                                    <input type="email" id="email" placeholder="Enter Email" class="form-control add" name="email"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Password*</label>
-                                    <input type="password" placeholder="Enter Password" class="form-control" name="password" required/>
+                                    <input type="password" id="password" placeholder="Enter Password" class="form-control add" name="password"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Confirm Password*</label>
-                                    <input type="text" placeholder="Confirm Password" class="form-control" name="confirm_password" required/>
+                                    <input type="password" id="confirm_password" placeholder="Confirm Password" class="form-control add" name="confirm_password"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control" name="status">
+                                    <select class="form-control add" id="status" name="status">
                                         <option>---Select---</option>
                                         <option>Enabled</option>
                                         <option>Disabled</option>
@@ -160,7 +155,7 @@
                         <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Add Employee</button>
+                                <button id="button" type="submit" class="btn btn-sm btn-success">Add Employee</button>
                             </div>
                         </div>
                         </div>
@@ -169,4 +164,33 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        var i = 2;
+        function addRequired(){
+            if(i % 2 === 0  ){
+                $('.add').attr('required','required');
+            }else{
+                $('.add').removeAttr('required' ,'required');
+            }
+            i = i + 1;
+        }
+    </script>
+
+    <script>
+        function store(test){
+            $.ajax({ 
+                type: "POST",
+                url: 'http://127.0.0.1:8000/employee/store',
+                data: $("#form").serialize(),
+                success: function() {
+                    swal({
+                        title: 'Employee Added Successfully',
+                        icon: 'success'
+                    });
+                }
+            });   
+        }
+    </script>
 @endsection

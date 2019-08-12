@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('index','EmployeeController@index')->name('employee.index');
 
         Route::get('details','EmployeeController@details')->name('employee.details');
+
+        Route::post('store','EmployeeController@store')->name('employee.store');
     });
 
 
