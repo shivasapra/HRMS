@@ -567,7 +567,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="media">
-                                                            <img src="./images/buildings.png" class="align-self-center mr-3" style="width:60px">
+                                                            <img src="{{asset('app/images/buildings.png')}}" class="align-self-center mr-3" style="width:60px">
                                                             <div class="media-body text-left">
                                                                 <h3>Travelport Pvt Ltd.</h3>
                                                                 <h5 class="text-left mb-1">Tele Marketing Executive </h5>
@@ -577,7 +577,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="media">
-                                                            <img src="./images/buildings.png" class="align-self-center mr-3" style="width:60px">
+                                                            <img src="{{asset('app/images/buildings.png')}}" class="align-self-center mr-3" style="width:60px">
                                                             <div class="media-body text-left">
                                                                 <h3>Cox & Kings Pvt Ltd.</h3>
                                                                 <h5 class="text-left mb-1">Tele Marketing Executive </h5>
@@ -622,10 +622,10 @@
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <a class="example-image-link" href="./images/certificate.jpg" data-lightbox="example-1"><img class="example-image img-fluid" src="./images/certificate.jpg" alt="certificate"/></a>
+                                                            <a class="example-image-link" href="{{asset('app/images/certificate.jpg')}}" data-lightbox="example-1"><img class="example-image img-fluid" src="{{asset('app/images/certificate.jpg')}}" alt="certificate"/></a>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a class="example-image-link" href="./images/certificate.jpg" data-lightbox="example-2"><img class="example-image img-fluid" src="./images/certificate.jpg" alt="certificate"/></a>
+                                                            <a class="example-image-link" href="{{asset('app/images/certificate.jpg')}}" data-lightbox="example-2"><img class="example-image img-fluid" src="{{asset('app/images/certificate.jpg')}}" alt="certificate"/></a>
                                                         </div>
                                                     </div>
                                                 </div>
