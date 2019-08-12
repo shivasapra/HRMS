@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" id="load">
                     <h2 class="text-default mb-4 h3">Add Employee</h2>
                     <form method="post" id="form" enctype="multipart/form-data" onsubmit="store(this);" action="javascript:void(0)">
                         @csrf
@@ -184,11 +184,14 @@
                 type: "POST",
                 url: 'http://127.0.0.1:8000/employee/store',
                 data: $("#form").serialize(),
-                success: function() {
+                success: function(data) {
+                    $("#load").load(" #load > *");
                     swal({
-                        title: 'Employee Added Successfully',
-                        icon: 'success'
+                        title: `Employee Added Successfully` ,
+                        text: `Employee Id: ${data['unique_id']} \n Name: ${data['first_name']} ${data['last_name']} `,
+                        icon: 'success',
                     });
+
                 }
             });   
         }

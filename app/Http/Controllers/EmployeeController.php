@@ -47,9 +47,9 @@ class EmployeeController extends Controller
         }
 
         $test_employee = Employee::where('unique_id','FORB0001')->get();
-        if ($test_employee->count()>0) {
-            $latest = Employee::orderByDesc()->take(1)->get();
-            $employee_prev_no = $latest[0]->unique_id;
+        if ($test_employee->count()) {
+            $latest = Employee::orderBy('id','desc')->first();
+            $employee_prev_no = $latest->unique_id;
             $unique_id = 'FORB000'.(substr($employee_prev_no,4,7)+1);
         }
         else{
@@ -64,7 +64,7 @@ class EmployeeController extends Controller
         $job_details->job_title = $request->job_title;
         $job_details->employment_status = $request->employment_status;
         $job_details->save();
-        
+
         return $employee;
     }
 }
