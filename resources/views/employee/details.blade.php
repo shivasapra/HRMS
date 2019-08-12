@@ -2,17 +2,17 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
+            <div class="card load">
                 <div class="card-body">
                     <h2 class="text-default mb-1 h3">Employee Details</h2> <hr>
                     <div class="row mt-4">
                         <div class="col-md-3 border-right">
                             <div class="">
-                                <div class="image-circle-div"><img class="img-fluid" src="{{asset('app/images/profile.jpg')}}" alt="Card image">
+                                <div class="image-circle-div"><img class="img-fluid" src="{{asset($employee->avatar)}}" alt="Card image">
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="text-center text-primary">Aaditya Nagarath</h3>
-                                    <p class="text-center text-gray">Tele Marketing Executive</p>
+                                    <h3 class="text-center text-primary">{{$employee->first_name.' '.$employee->last_name}}</h3>
+                                    <p class="text-center text-gray">{{$employee->JobDetails->job_title}}</p>
                                     <div class="list-group mt-4 employee-details border">
                                         <a href="#personal-details" data-toggle="tab" class="list-group-item list-group-item-action active">Personal Details</a>
                                         <a href="#contact-details" data-toggle="tab" class="list-group-item list-group-item-action">Contact Details</a>
@@ -34,74 +34,75 @@
                                             Personal Details
                                         </div>
                                         <div class="card-body">
-                                            <form method="POST">
+                                            <form method="post" id="pd" action="{{route('employee.personalDetails.store',$employee)}}">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>First Name*</label>
-                                                            <input type="text" placeholder="Enter First Name" class="form-control disabled_attribute" name="first_name" value="Aaditya" required disabled/>
+                                                            <input type="text" placeholder="Enter First Name" class="form-control disabled_attribute" name="first_name" value="{{$employee->first_name}}" required disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Middle Name</label>
-                                                            <input type="text" placeholder="Enter Middle Name" class="form-control disabled_attribute" name="middle_name" disabled/>
+                                                            <input type="text" placeholder="Enter Middle Name" class="form-control disabled_attribute" name="{{$employee->middle_name}}" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Last Name*</label>
-                                                            <input type="text" placeholder="Enter Last Name" class="form-control disabled_attribute" name="last_name" value="Nagarath" required disabled/>
+                                                            <input type="text" placeholder="Enter Last Name" class="form-control disabled_attribute" name="last_name" value="{{$employee->last_name}}" required disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Employee ID</label>
-                                                            <input type="text" placeholder="" class="form-control" name="employee_id" value="1526600" disabled/>
+                                                            <input type="text" placeholder="" class="form-control" name="unique_id" value="{{$employee->unique_id}}" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Driving License Number</label>
-                                                            <input type="text" placeholder="Enter Driving License Number" class="form-control disabled_attribute" name="driving_license_number" disabled/>
+                                                            <input type="text" placeholder="Enter Driving License Number" alue="{{$employee->driving_icense_number}}" class="form-control disabled_attribute" name="driving_icense_number" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>License Expiry Date</label>
-                                                            <input type="date" placeholder="Enter License Expiry Date" class="form-control disabled_attribute" name="license_expiry_date" disabled/>
+                                                            <input type="date" placeholder="Enter License Expiry Date" alue="{{$employee->licence_expiry_date}}" class="form-control disabled_attribute" name="license_expiry_date" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Marital Status</label>
                                                             <select class="form-control disabled_attribute" name="martial_status" disabled>
-                                                                <option>---Select---</option>
-                                                                <option>Single</option>
-                                                                <option>Married</option>
-                                                                <option>Other</option>
+                                                                <option value="">---Select---</option>
+                                                                <option value="Single">Single</option>
+                                                                <option value="married">Married</option>
+                                                                <option value="other">Other</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nationality</label>
-                                                            <select class="form-control disabled_attribute" name="martial_status" disabled>
-                                                                <option value="0">-- Select --</option>
-                                                                <option value="1">Afghan</option>
-                                                                <option value="2">Albanian</option>
-                                                                <option value="3">Algerian</option>
-                                                                <option value="4">American</option>
-                                                                <option value="5">Andorran</option>
-                                                                <option value="6">Angolan</option>
-                                                                <option value="7">Antiguans</option>
+                                                            <select class="form-control disabled_attribute" name="nationality" disabled>
+                                                                <option value="">-- Select --</option>
+                                                                <option value="Afghan">Afghan</option>
+                                                                <option value="Albanian">Albanian</option>
+                                                                <option value="Algerian">Algerian</option>
+                                                                <option value="American">American</option>
+                                                                <option value="Andorran">Andorran</option>
+                                                                <option value="Angolan">Angolan</option>
+                                                                <option value="Antiguans">Antiguans</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Date of Birth</label>
-                                                            <input type="date" class="form-control disabled_attribute" name="date_of_birth" disabled/>
+                                                            <input type="date" class="form-control disabled_attribute" name="DOB" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -110,12 +111,12 @@
                                                             <div>
                                                                 <div class="form-radio d-inline-block">
                                                                     <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input disabled_attribute" name="optionsRadios" id="optionsRadios1" value="" checked disabled> Male
+                                                                        <input type="radio" class="form-check-input disabled_attribute" name="gender" id="optionsRadios1" value="Male"  disabled> Male
                                                                         <i class="input-helper"></i></label>
                                                                 </div>
                                                                 <div class="form-radio d-inline-block">
                                                                     <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input disabled_attribute" name="optionsRadios" id="optionsRadios1" value="" disabled> Female
+                                                                        <input type="radio" class="form-check-input disabled_attribute" name="gender" id="optionsRadios1" value="Female"  disabled> Female
                                                                         <i class="input-helper"></i></label>
                                                                 </div>
                                                             </div>
@@ -1038,4 +1039,19 @@
     </div>
 
 
+@endsection
+@section('scripts')
+    {{-- <script> 
+        $(document).ready(function() { 
+            $('#pd').ajaxForm(function(data) { 
+                console.log(data);
+                
+                $(".load").load(" .load > *");
+                swal({
+                    title: `Personal Details Updated` ,
+                    icon: `success`,
+                });
+            }); 
+        }); 
+    </script> --}}
 @endsection

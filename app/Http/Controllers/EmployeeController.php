@@ -18,8 +18,8 @@ class EmployeeController extends Controller
         return view('employee.index')->with('employees',Employee::all());
     }
 
-    public function details(){
-        return view('employee.details');
+    public function details(Employee $employee){
+        return view('employee.details')->with('employee',$employee);
     }
 
     public function store(Request $request, Employee $employee, JobDetails $job_details){
@@ -65,5 +65,21 @@ class EmployeeController extends Controller
         $job_details->save();
 
         return $employee;
+    }
+
+    public function storePD(Request $request,Employee $employee){
+        $employee->first_name = $request->first_name;
+        $employee->middle_name = $request->middle_name;
+        $employee->last_name = $request->last_name;
+        $employee->driving_icense_number = $request->driving_icense_number;
+        $employee->license_expiry_date = $request->license_expiry_date;
+        $employee->marital_status = $request->marital_status;
+        $employee->nationality = $request->nationality;
+        $employee->DOB = $request->DOB;
+        $employee->gender = $request->gender;
+        $employee->save();
+
+        return $employee;
+
     }
 }

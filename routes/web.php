@@ -23,9 +23,10 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('index','EmployeeController@index')->name('employee.index');
 
-        Route::get('details','EmployeeController@details')->name('employee.details');
+        Route::get('details/{employee}','EmployeeController@details')->name('employee.details');
 
         Route::post('store','EmployeeController@store')->name('employee.store');
+        Route::post('update/personal-details/{employee}','EmployeeController@storePD')->name('employee.personalDetails.store');
     });
 
 

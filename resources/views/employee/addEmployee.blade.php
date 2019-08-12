@@ -166,8 +166,6 @@
     </div>
 @endsection
 @section('scripts')
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
-    <script src="http://malsup.github.com/jquery.form.js"></script> 
     <script>
         var i = 2;
         function addRequired(){
@@ -186,7 +184,7 @@
                     swal({
                         title: `Employee Added Successfully` ,
                         text: `Employee Id: ${data['unique_id']} \n Name: ${data['first_name']} ${data['last_name']} `,
-                        icon: 'success',
+                        icon: `success`,
                     });
             }); 
         }); 

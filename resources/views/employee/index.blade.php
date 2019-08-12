@@ -27,7 +27,7 @@
                                         <td>{{$employee->first_name.' '.$employee->last_name}}</td>
                                         <td>{{$employee->JobDetails->job_title}}</td>
                                         <td>{{$employee->JobDetails->employment_status}}</td>
-                                        <td><a href="{{route('employee.details')}}" class="btn btn-primary">View Details</a></td>
+                                        <td><a href="{{route('employee.details',$employee)}}" class="btn btn-primary">View Details</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

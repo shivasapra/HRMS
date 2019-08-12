@@ -25,7 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->string('marital_status')->nullable();
             $table->string('nationality')->nullable();
             $table->Date('DOB')->nullable();
-            $table->Date('gender')->nullable();
+            $table->string('gender')->nullable();
             $table->string('avatar')->nullable();
             $table->string('report_to_name')->nullable();
             $table->string('report_to_supervisor')->nullable();
