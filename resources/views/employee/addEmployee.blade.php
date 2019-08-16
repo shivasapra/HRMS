@@ -180,12 +180,13 @@
 <script> 
         $(document).ready(function() { 
             $('#myForm').ajaxForm(function(data) { 
-                    $("#load").load(" #load > *");
                     swal({
                         title: `Employee Added Successfully` ,
                         text: `Employee Id: ${data['unique_id']} \n Name: ${data['first_name']} ${data['last_name']} `,
                         icon: `success`,
                     });
+                    $("#load").load(" #load > *");
+                    $("#load_body").load(" #load > *");
             }); 
         }); 
     </script> 
