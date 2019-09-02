@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('update/emergency-contact-details/{employee}','EmployeeController@updateECD')->name('employee.emerContactDetails.update');
         Route::post('update/job-details/{employee}','EmployeeController@updateJD')->name('employee.jobDetails.update');
         Route::post('update/report-to-details/{employee}','EmployeeController@updateReportTo')->name('employee.reportToDetails.update');
+        Route::post('update/services-allowances/{employee}','EmployeeController@updateServicesAllowances')->name('employee.services.allowances.update');
         Route::post('add/work-experience/{employee}','EmployeeController@addWorkExperience')->name('employee.workExperience.add');
         Route::post('add/skills/{employee}','EmployeeController@addSkills')->name('employee.skills.add');
         Route::post('add/attachments/{employee}','EmployeeController@addAttachments')->name('employee.attachment.add');

@@ -12,6 +12,10 @@ use App\JobtitleSettings;
 use App\WorkExperience;
 use App\Skills;
 use App\Attachments;
+use App\Services;
+use App\ServiceSettings;
+use App\AllowanceSettings;
+use App\Allowances;
 
 class EmployeeController extends Controller
 {
@@ -140,6 +144,33 @@ class EmployeeController extends Controller
         $employee->save();
 
         return redirect()->back();
+    }
+
+    public function updateServicesAllowances(Request $request,Employee $employee){
+        foreach($employee->Services as $ser){
+            $ser->delete();
+        }
+
+        foreach($employee->Allowances as $all){
+            $all->delete();
+        }
+        foreach($request->services as $s){
+            $service = new Services;
+            $service->employee_id = $employee->id;
+            $service->name = ServiceSettings::find($s)->name;
+            $service->save();
+        }
+
+        foreach($request->allowances as $s){
+            $allowance = new Allowances;
+            $allowance->employee_id = $employee->id;
+            $allowance->name = AllowanceSettings::find($s)->name;
+            $allowance->save();
+        }
+
+        
+        return redirect()->back();
+
     }
 
     public function addWorkExperience(Employee $employee, Request $request, WorkExperience $we){

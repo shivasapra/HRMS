@@ -553,76 +553,38 @@
                                             Allowance & Services
                                         </div>
                                         <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h3>Allowence</h3>
-                                                    <div class="form-group">
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">HRA
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input" checked="">Medical
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">TA
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">Insurance
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">DA
-                                                            </label>
+                                            <form action="{{route('employee.services.allowances.update',$employee)}}" method="post">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3>Allowance</h3>
+                                                        <div class="form-group">
+                                                            @foreach (App\AllowanceSettings::all() as $a)
+                                                                <div class="form-check form-check-flat d-inline-block">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" value="{{$a->id}}" {{($employee->Allowances->pluck('name')->contains($a->name))? 'checked' : ''}} name="allowances[]" class="form-check-input">{{$a->name}}
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-12 mt-3">
-                                                    <h3>Services</h3>
-                                                    <div class="form-group">
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">Bus
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">Food
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">TDS
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input" checked="">Security
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">PF
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-flat d-inline-block">
-                                                            <label class="form-check-label">
-                                                                <input type="checkbox" class="form-check-input">ESI
-                                                            </label>
+                                                    <div class="col-md-12 mt-3">
+                                                        <h3>Services</h3>
+                                                        <div class="form-group">
+                                                            @foreach (App\ServiceSettings::all() as $s)
+                                                                <div class="form-check form-check-flat d-inline-block">
+                                                                    <label class="form-check-label">
+                                                                        <input type="checkbox" value="{{$s->id}}" {{($employee->Services->pluck('name')->contains($s->name))? 'checked' : ''}} name="services[]" class="form-check-input">{{$s->name}}
+                                                                    </label>
+                                                                </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12">
+                                                        <button type="submit" class="btn btn-success">Save</button>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-success">Save</button>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
