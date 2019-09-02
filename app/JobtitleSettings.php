@@ -8,7 +8,7 @@ class JobtitleSettings extends Model
 {
     protected $table = 'jobtitle_settings';
 
-    public function DepartmentSettings(){
+    public function Department(){
         return $this->belongsTo('App\DepartmentSettings');
     } 
 }

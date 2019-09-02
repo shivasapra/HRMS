@@ -14,9 +14,9 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 Route::group(['middleware' => ['auth']], function () {
     
+    Route::get('/', 'HomeController@index')->name('home');
 
     Route::group(['prefix' => 'employee/'], function () {
         Route::get('add','EmployeeController@add')->name('employee.add');
@@ -35,6 +35,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('add/skills/{employee}','EmployeeController@addSkills')->name('employee.skills.add');
         Route::post('add/attachments/{employee}','EmployeeController@addAttachments')->name('employee.attachment.add');
     });
+
+    Route::get('/settings', 'SettingsController@settings')->name('settings');
+
+    Route::get('/department-delete{d}', 'SettingsController@deleteDepartment')->name('department.delete');
+    Route::get('/allowance-delete{a}', 'SettingsController@deleteAllowance')->name('allowance.delete');
+    Route::get('/service-delete{s}', 'SettingsController@deleteService')->name('service.delete');
+    Route::get('/Job-Title-delete{j}', 'SettingsController@deleteJobTitle')->name('job_title.delete');
+
+    Route::post('/department-add', 'SettingsController@addDepartment')->name('department.add');
+    Route::post('/allowance-add', 'SettingsController@addAllowance')->name('allowance.add');
+    Route::post('/service-add', 'SettingsController@addService')->name('service.add');
+    Route::post('/Job-Title-add', 'SettingsController@addJobTitle')->name('job_title.add');
 
 
 });

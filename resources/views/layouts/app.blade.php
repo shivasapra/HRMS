@@ -240,7 +240,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="settings.php">
+                        <a class="nav-link" href="{{route('settings')}}">
                             <i class="menu-icon mdi mdi-settings"></i>
                             <span class="menu-title">Settings</span>
                         </a>
