@@ -20,7 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->string('driving_icense_number')->nullable();
+            $table->string('driving_license_number')->nullable();
             $table->string('license_expiry_date')->nullable();
             $table->string('marital_status')->nullable();
             $table->string('nationality')->nullable();

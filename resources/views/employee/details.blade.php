@@ -34,7 +34,7 @@
                                             Personal Details
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" id="pd" action="{{route('employee.personalDetails.store',$employee)}}">
+                                            <form method="post" id="pd" action="{{route('employee.personalDetails.update',$employee)}}">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-md-4">
@@ -46,7 +46,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Middle Name</label>
-                                                            <input type="text" placeholder="Enter Middle Name" class="form-control disabled_attribute" name="{{$employee->middle_name}}" disabled/>
+                                                            <input type="text" placeholder="Enter Middle Name" class="form-control disabled_attribute" name="middle_name" value="{{$employee->middle_name}}" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -64,45 +64,36 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Driving License Number</label>
-                                                            <input type="text" placeholder="Enter Driving License Number" alue="{{$employee->driving_icense_number}}" class="form-control disabled_attribute" name="driving_icense_number" disabled/>
+                                                            <input type="text" placeholder="Enter Driving License Number" value="{{$employee->driving_license_number}}" class="form-control disabled_attribute" name="driving_license_number" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>License Expiry Date</label>
-                                                            <input type="date" placeholder="Enter License Expiry Date" alue="{{$employee->licence_expiry_date}}" class="form-control disabled_attribute" name="license_expiry_date" disabled/>
+                                                            <input type="date" placeholder="Enter License Expiry Date" value="{{$employee->license_expiry_date}}" class="form-control disabled_attribute" name="license_expiry_date" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Marital Status</label>
-                                                            <select class="form-control disabled_attribute" name="martial_status" disabled>
+                                                            <select class="form-control disabled_attribute" name="marital_status" disabled>
                                                                 <option value="">---Select---</option>
-                                                                <option value="Single">Single</option>
-                                                                <option value="married">Married</option>
-                                                                <option value="other">Other</option>
+                                                                <option value="single" {{($employee->marital_status == 'single')? 'selected' : ''}}>Single</option>
+                                                                <option value="married" {{($employee->marital_status == 'married')? 'selected' : ''}}>Married</option>
+                                                                <option value="other" {{($employee->marital_status == 'other')? 'selected' : ''}}>Other</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nationality</label>
-                                                            <select class="form-control disabled_attribute" name="nationality" disabled>
-                                                                <option value="">-- Select --</option>
-                                                                <option value="Afghan">Afghan</option>
-                                                                <option value="Albanian">Albanian</option>
-                                                                <option value="Algerian">Algerian</option>
-                                                                <option value="American">American</option>
-                                                                <option value="Andorran">Andorran</option>
-                                                                <option value="Angolan">Angolan</option>
-                                                                <option value="Antiguans">Antiguans</option>
-                                                            </select>
+                                                            <input type="text" name="nationality" value="{{$employee->nationality}}" class="form-control disabled_attribute" placeholder="Enter Nationality " disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Date of Birth</label>
-                                                            <input type="date" class="form-control disabled_attribute" name="DOB" disabled/>
+                                                            <input type="date" class="form-control disabled_attribute" name="DOB" value="{{$employee->DOB}}" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -111,12 +102,12 @@
                                                             <div>
                                                                 <div class="form-radio d-inline-block">
                                                                     <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input disabled_attribute" name="gender" id="optionsRadios1" value="Male"  disabled> Male
+                                                                        <input type="radio" class="form-check-input disabled_attribute" {{($employee->gender == 'Male')? 'checked' : ''}} name="gender" id="optionsRadios1" value="Male"  disabled> Male
                                                                         <i class="input-helper"></i></label>
                                                                 </div>
                                                                 <div class="form-radio d-inline-block">
                                                                     <label class="form-check-label">
-                                                                        <input type="radio" class="form-check-input disabled_attribute" name="gender" id="optionsRadios1" value="Female"  disabled> Female
+                                                                        <input type="radio" class="form-check-input disabled_attribute" {{($employee->gender == 'Female')? 'checked' : ''}} name="gender" id="optionsRadios1" value="Female"  disabled> Female
                                                                         <i class="input-helper"></i></label>
                                                                 </div>
                                                             </div>
@@ -126,8 +117,8 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <button type="button" id="remove_disabled_class" class="btn btn-success">Edit</button>
-                                                            <button type="submit" id="save_details" class="btn btn-success" style="display:none;">Save</button>
+                                                            <button type="button" class="btn btn-success remove_disabled_class">Edit</button>
+                                                            <button type="submit" class="btn btn-success save_details" style="display:none;">Save</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,89 +132,81 @@
                                             Contact Details
                                         </div>
                                         <div class="card-body">
-                                            <form method="POST">
+                                            <form method="post" id="cd" action="{{route('employee.contactDetails.update',$employee)}}">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Address Street 1</label>
-                                                            <input type="text" placeholder="Enter Address Street 1" class="form-control disabled_attribute" name="address_street_1" disabled/>
+                                                            <input type="text" placeholder="Enter Address Street 1" class="form-control disabled_attribute" name="address_street_one" @if($employee->ContactDetails) value="{{$employee->ContactDetails->address_street_one}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Address Street 2</label>
-                                                            <input type="text" placeholder="Enter Address Street 2" class="form-control disabled_attribute" name="address_street_2" disabled/>
+                                                            <input type="text" placeholder="Enter Address Street 2" class="form-control disabled_attribute" name="address_street_two" @if($employee->ContactDetails) value="{{$employee->ContactDetails->address_street_one}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>City</label>
-                                                            <input type="text" placeholder="Enter City" class="form-control disabled_attribute" name="city" disabled/>
+                                                            <input type="text" placeholder="Enter City" class="form-control disabled_attribute" name="city" @if($employee->ContactDetails) value="{{$employee->ContactDetails->city}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>State/Province</label>
-                                                            <input type="text" placeholder="Enter State/Province" class="form-control" name="state_province" disabled/>
+                                                            <input type="text" placeholder="Enter State/Province" class="form-control disabled_attribute" name="state" @if($employee->ContactDetails) value="{{$employee->ContactDetails->state}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Zip/Postal Code</label>
-                                                            <input type="text" placeholder="Enter Zip/Postal Code" class="form-control disabled_attribute" name="zip_postal_code" disabled/>
+                                                            <input type="text" placeholder="Enter Zip/Postal Code" class="form-control disabled_attribute" name="postal_code" @if($employee->ContactDetails) value="{{$employee->ContactDetails->postal_code}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Country</label>
-                                                            <select class="form-control disabled_attribute" name="country" disabled>
-                                                                <option value="0">-- Select --</option>
-                                                                <option value="1">Afghan</option>
-                                                                <option value="2">Albanian</option>
-                                                                <option value="3">Algerian</option>
-                                                                <option value="4">American</option>
-                                                                <option value="5">Andorran</option>
-                                                                <option value="6">Angolan</option>
-                                                                <option value="7">Antiguans</option>
-                                                            </select>
+                                                            <input type="text" placeholder="Enter Country" class="form-control disabled_attribute" name="country" @if($employee->ContactDetails) value="{{$employee->ContactDetails->country}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Home Telephone</label>
-                                                            <input type="text" placeholder="Enter Home Telephone" class="form-control disabled_attribute" name="home_telephone" disabled/>
+                                                            <input type="text" placeholder="Enter Home Telephone" class="form-control disabled_attribute" name="home_phone" @if($employee->ContactDetails) value="{{$employee->ContactDetails->home_phone}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Mobile</label>
-                                                            <input type="text" placeholder="Enter Mobile" class="form-control disabled_attribute" name="mobile" disabled/>
+                                                            <input type="text" placeholder="Enter Mobile" class="form-control disabled_attribute" name="mobile" @if($employee->ContactDetails) value="{{$employee->ContactDetails->mobile}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Work Telephone</label>
-                                                            <input type="text" placeholder="Enter Work Telephone" class="form-control disabled_attribute" name="work_telephone" disabled/>
+                                                            <input type="text" placeholder="Enter Work Telephone" class="form-control disabled_attribute" name="work_phone" @if($employee->ContactDetails) value="{{$employee->ContactDetails->work_phone}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Work Email</label>
-                                                            <input type="text" placeholder="Enter Work Email" class="form-control disabled_attribute" name="work_email" disabled/>
+                                                            <input type="email" placeholder="Enter Work Email" class="form-control disabled_attribute" name="work_email" @if($employee->ContactDetails) value="{{$employee->ContactDetails->work_email}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Other Email</label>
-                                                            <input type="text" placeholder="Enter Other Email" class="form-control disabled_attribute" name="other_email" disabled/>
+                                                            <input type="email" placeholder="Enter Other Email" class="form-control disabled_attribute" name="other_email" @if($employee->ContactDetails) value="{{$employee->ContactDetails->other_email}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <button type="button" id="remove_disabled_class" class="btn btn-success">Edit</button>
-                                                            <button type="submit" id="save_details" class="btn btn-success" style="display:none;">Save</button>
+                                                            <button type="button" class="btn btn-success remove_disabled_class">Edit</button>
+                                                            <button type="submit" class="btn btn-success save_details" style="display:none;">Save</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -237,32 +220,33 @@
                                             Emergency Details
                                         </div>
                                         <div class="card-body">
-                                            <form method="POST">
+                                            <form method="post" id="cd" action="{{route('employee.emerContactDetails.update',$employee)}}">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Name</label>
-                                                            <input type="text" placeholder="Enter Name" class="form-control disabled_attribute" name="emergency_name" disabled/>
+                                                            <input type="text" placeholder="Enter Name" class="form-control disabled_attribute" @if($employee->ContactDetails) value="{{$employee->ContactDetails->emergency_name}}" @endif name="emergency_name" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Mobile</label>
-                                                            <input type="text" placeholder="Enter Mobile" class="form-control disabled_attribute" name="mobile" disabled/>
+                                                            <input type="text" placeholder="Enter Mobile" class="form-control disabled_attribute" @if($employee->ContactDetails) value="{{$employee->ContactDetails->emergency_mobile}}" @endif name="emergency_mobile" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Relationship</label>
-                                                            <input type="text" placeholder="Enter Relationship" class="form-control disabled_attribute" name="relationship" disabled/>
+                                                            <input type="text" placeholder="Enter Relationship" class="form-control disabled_attribute" name="emergency_relationship" @if($employee->ContactDetails) value="{{$employee->ContactDetails->emergency_relationship}}" @endif disabled/>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <button type="button" id="remove_disabled_class" class="btn btn-success">Edit</button>
-                                                            <button type="submit" id="save_details" class="btn btn-success" style="display:none;">Save</button>
+                                                            <button type="button" class="btn btn-success remove_disabled_class">Edit</button>
+                                                            <button type="submit" class="btn btn-success save_details" style="display:none;">Save</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -399,9 +383,9 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <button type="button" id="remove_disabled_class" class="btn btn-success">Edit</button>
-                                                            <button type="button" id="remove_disabled_class" class="btn btn-danger ml-2">Terminate Employee</button>
-                                                            <button type="submit" id="save_details" class="btn btn-success" style="display:none;">Save</button>
+                                                            <button type="button" class="btn btn-success remove_disabled_class">Edit</button>
+                                                            <button type="submit" class="btn btn-success save_details" style="display:none;">Save</button>
+                                                            {{-- <button type="button" id="remove_disabled_class" class="btn btn-danger ml-2">Terminate Employee</button> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -548,8 +532,8 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <button type="button" id="remove_disabled_class" class="btn btn-success">Edit</button>
-                                                            <button type="submit" id="save_details" class="btn btn-success" style="display:none;">Save</button>
+                                                            <button type="button" class="btn btn-success remove_disabled_class">Edit</button>
+                                                            <button type="submit" class="btn btn-success save_details" style="display:none;">Save</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1041,6 +1025,15 @@
 
 @endsection
 @section('scripts')
+    <script>
+        $(document).ready(function() {
+            $(".remove_disabled_class").click(function () {
+                $('.disabled_attribute').removeAttr("disabled");
+                $('.remove_disabled_class').hide();
+                $('.save_details').toggle();
+            })
+        });
+    </script>
     {{-- <script> 
         $(document).ready(function() { 
             $('#pd').ajaxForm(function(data) { 

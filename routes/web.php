@@ -26,7 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('details/{employee}','EmployeeController@details')->name('employee.details');
 
         Route::post('store','EmployeeController@store')->name('employee.store');
-        Route::post('update/personal-details/{employee}','EmployeeController@storePD')->name('employee.personalDetails.store');
+        Route::post('update/personal-details/{employee}','EmployeeController@updatePD')->name('employee.personalDetails.update');
+        Route::post('update/contact-details/{employee}','EmployeeController@updateCD')->name('employee.contactDetails.update');
+        Route::post('update/emergency-contact-details/{employee}','EmployeeController@updateECD')->name('employee.emerContactDetails.update');
     });
 
 

@@ -298,15 +298,7 @@
         } );
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $("#remove_disabled_class").click(function () {
-                $('.disabled_attribute').removeAttr("disabled");
-                $('#remove_disabled_class').hide();
-                document.getElementById("save_details").style.display = "block";
-            })
-        });
-    </script>
+    
     <script>
         $(function() {
             $('.calendar').pignoseCalendar({

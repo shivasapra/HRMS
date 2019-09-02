@@ -166,7 +166,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
+    {{-- <script>
         var i = 2;
         function addRequired(){
             if(i % 2 === 0  ){
@@ -176,8 +176,8 @@
             }
             i = i + 1;
         }
-    </script>
-<script> 
+    </script> --}}
+{{-- <script> 
         $(document).ready(function() { 
             $('#myForm').ajaxForm(function(data) { 
                     swal({
@@ -189,28 +189,28 @@
                     $("#load_body").load(" #load > *");
             }); 
         }); 
-    </script> 
-    <script>
+    </script>  --}}
+    {{-- <script>
         
-        // function store(test){
-        //     $('#form').ajaxForm(function() { 
-        //         alert("Thank you for your comment!"); 
-        //     }); 
-            // $.ajax({ 
-            //     type: "POST",
-            //     url: 'http://127.0.0.1:8000/employee/store',
-            //     data: $("#form").serialize(),
-            //     success: function(data) {
-            //         console.log(data);
-            //         $("#load").load(" #load > *");
-            //         swal({
-            //             title: `Employee Added Successfully` ,
-            //             text: `Employee Id: ${data['unique_id']} \n Name: ${data['first_name']} ${data['last_name']} `,
-            //             icon: 'success',
-            //         });
+        function store(test){
+            $('#form').ajaxForm(function() { 
+                alert("Thank you for your comment!"); 
+            }); 
+            $.ajax({ 
+                type: "POST",
+                url: 'http://127.0.0.1:8000/employee/store',
+                data: $("#form").serialize(),
+                success: function(data) {
+                    console.log(data);
+                    $("#load").load(" #load > *");
+                    swal({
+                        title: `Employee Added Successfully` ,
+                        text: `Employee Id: ${data['unique_id']} \n Name: ${data['first_name']} ${data['last_name']} `,
+                        icon: 'success',
+                    });
 
-            //     }
-            // });   
+                }
+            });   
         }
-    </script>
+    </script> --}}
 @endsection
