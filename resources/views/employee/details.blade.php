@@ -265,76 +265,23 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>Department</label>
-                                                            <select class="form-control disabled_attribute" name="department" disabled required>
-                                                                <option value="0">-- Select --</option>
-                                                                <option value="0">Accountant</option>
-                                                                <option value="0">Collection Manager</option>
-                                                                <option value="0">HR Manager</option>
-                                                                <option value="0">HR Executive</option>
-                                                                <option value="0">Branch Marketing Manager (BMM)</option>
-                                                                <option value="0">Tele Marketing Manager (TMM)</option>
-                                                                <option value="0">Tele Marketing Supervisor (TMS)</option>
-                                                                <option value="0">Tele Marketing Executive (TME)</option>
-                                                                <option value="0">Data Operator</option>
-                                                                <option value="0">OPC Supervisor</option>
-                                                                <option value="0">OPC Executive</option>
-                                                                <option value="0">Relationship Manager</option>
-                                                                <option value="0">MRD Executive</option>
-                                                                <option value="0">Corporate Operations</option>
-                                                                <option value="0">Operations Head</option>
-                                                                <option value="0">Unit Manager</option>
-                                                                <option value="0">Operation Team Manager</option>
-                                                                <option value="0">Sr. Travel Consultant</option>
-                                                                <option value="0">Travel Consultant</option>
-                                                                <option value="0">Cheif Sale Officer</option>
-                                                                <option value="0">Relational Manager</option>
-                                                                <option value="0">Branch Manager</option>
-                                                                <option value="0">Unit Manager</option>
-                                                                <option value="0">Sale Team Manager</option>
-                                                                <option value="0">Take Over Manager</option>
-                                                                <option value="0">Senior Holiday Consultant</option>
-                                                                <option value="0">Holiday Consultant</option>
-                                                                <option value="0">Business Develop Manager</option>
-                                                                <option value="0">Business Develop Executive</option>
+                                                            <label>Department*</label>
+                                                            <select class="form-control disabled_attribute" id="department" class="disabled_attribute form-control" onchange="extractJobTitles(this)" name="department" disabled required>
+                                                                <option value="">-- Select --</option>
+                                                                @foreach(App\DepartmentSettings::all() as $d)
+                                                                    <option {{($employee->JobDetails->department == $d->name)?'selected':''}} value="{{$d->id}}">{{$d->name}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>Job Title</label>
-                                                            <select class="form-control disabled_attribute" name="job_title" disabled required>
-                                                                <option value="0">---Select---</option>
-                                                                <option value="0">Accountant</option>
-                                                                <option value="0">Collection Manager</option>
-                                                                <option value="0">HR Manager</option>
-                                                                <option value="0">HR Executive</option>
-                                                                <option value="0">Branch Marketing Manager (BMM)</option>
-                                                                <option value="0">Tele Marketing Manager (TMM)</option>
-                                                                <option value="0">Tele Marketing Supervisor (TMS)</option>
-                                                                <option value="0">Tele Marketing Executive (TME)</option>
-                                                                <option value="0">Data Operator</option>
-                                                                <option value="0">OPC Supervisor</option>
-                                                                <option value="0">OPC Executive</option>
-                                                                <option value="0">Relationship Manager</option>
-                                                                <option value="0">MRD Executive</option>
-                                                                <option value="0">Corporate Operations</option>
-                                                                <option value="0">Operations Head</option>
-                                                                <option value="0">Unit Manager</option>
-                                                                <option value="0">Operation Team Manager</option>
-                                                                <option value="0">Sr. Travel Consultant</option>
-                                                                <option value="0">Travel Consultant</option>
-                                                                <option value="0">Cheif Sale Officer</option>
-                                                                <option value="0">Relational Manager</option>
-                                                                <option value="0">Branch Manager</option>
-                                                                <option value="0">Unit Manager</option>
-                                                                <option value="0">Sale Team Manager</option>
-                                                                <option value="0">Take Over Manager</option>
-                                                                <option value="0">Senior Holiday Consultant</option>
-                                                                <option value="0">Holiday Consultant</option>
-                                                                <option value="0">Business Develop Manager</option>
-                                                                <option value="0">Business Develop Executive</option>
-                                                            </select>
+                                                            <label>Job Title*</label>
+                                                            <div id="job-append">
+                                                                <select class="form-control disabled_attribute" id="job_title" name="job_title" disabled required>
+                                                                    <option value="">{{$employee->JobDetails->job_title}}</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -983,6 +930,26 @@
 
 @endsection
 @section('scripts')
+    <script>
+        function extractJobTitles(temp){
+            var did = temp.value;
+            @foreach(App\DepartmentSettings::all() as $d)
+                var fetched_id = JSON.parse({{$d->id}});
+                if(did == fetched_id){
+                    var data =
+                    '<select class="form-control" id="job_title" name="job_title" required>'+
+                        '<option value="">--Select--</option>'+
+                        '@foreach($d->JobtitleSettings as $j)'+
+                            '<option value="{{$j->id}}">{{$j->name}}</option>'+
+                        '@endforeach'+
+                    '</select>';
+                }
+            @endforeach
+                $('#job-append').html(data);
+            
+                
+        }
+    </script>
     <script>
         $(document).ready(function() {
             $(".remove_disabled_class").click(function () {
