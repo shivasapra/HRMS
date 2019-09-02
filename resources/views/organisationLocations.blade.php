@@ -26,8 +26,10 @@
                                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list">
                                                     <ul class="dropdown-ul">
                                                         <li>
-                                                            <a href="#">Edit</a>
-                                                            <a href="#">Delete</a>
+                                                            <a href="javascript:void(0)" onclick="edit(this)">Edit
+                                                                <input type="hidden" id="org" value="{{$o}}">
+                                                            </a>
+                                                            <a href="{{route('organisation.delete',$o)}}">Delete</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -97,4 +99,72 @@
             </div>
         </div>
     </div>
+
+
+    <button type="button" id="modalButton" data-toggle="modal" data-target="#editModal" style="display:none;"></button>
+    <div id="modalDisplay"></div>
+
+    
+@endsection
+
+@section('scripts')
+    <script>
+        function edit(temp){
+            var object = JSON.parse($('#org').val());
+            var data = 
+            '<div class="modal fade" id="editModal">'+
+                '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
+                    '<div class="modal-content">'+
+
+                        '<!-- Modal Header -->'+
+                        '<div class="modal-header">'+
+                            '<h4 class="modal-title">Update Location</h4>'+
+                            '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
+                        '</div>'+
+
+                        '<!-- Modal body -->'+
+                        '<div class="modal-body">'+
+                            '<form method="POST" action="{{route("update.organisations",)}}">'+
+                                '@csrf'+
+                                '<div class="row">'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<label>Title</label>'+
+                                            '<input type="hidden" value="'+object["id"]+'" name="org_id">'+
+                                            '<input type="text" placeholder="Enter Title" class="form-control" value="'+object["title"]+'" name="title" required/>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<label>Address</label>'+
+                                            '<input type="text" placeholder="Enter Address" class="form-control" value="'+object["address"]+'" name="address" required/>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<label>Website Link</label>'+
+                                            '<input type="text" placeholder="Enter Website Link" class="form-control" value="'+object["website"]+'" name="website" required/>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<label>Phone Number</label>'+
+                                            '<input type="text" placeholder="Enter Phone Number" class="form-control" value="'+object["phone"]+'" name="phone" required/>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="row">'+
+                                    '<div class="col-md-12">'+
+                                        '<button type="submit" id="" class="btn btn-success">Update</button>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</form>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+            $('#modalDisplay').html(data);
+            $('#modalButton').click();
+        }
+    </script>
 @endsection

@@ -58,5 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
     })->name('organisations.locations');
 
     Route::post('/add-organisations','HomeController@addOrganisations')->name('add.organisations');
+    Route::post('/update-organisations','HomeController@updateOrganisations')->name('update.organisations');
+    Route::get('/delete-organisations/{o}','HomeController@deleteOrganisation')->name('organisation.delete');
 
 });

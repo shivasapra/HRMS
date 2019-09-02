@@ -12,7 +12,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('organisations.locations')}}">Locations</a>
                     </li>
-                    <a class="btn btn-primary float-right ml-auto" href="#" data-toggle="modal" data-target="#add_location">Add</a>
                 </ul>
                 <div class="row">
                     <div class="col-md-12 mb-5">

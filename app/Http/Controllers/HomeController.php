@@ -37,4 +37,20 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function deleteOrganisation(Organisations $o){
+        $o->delete();
+        return redirect()->back();
+    }
+
+    public function updateOrganisations(Request $request){
+        $o = Organisations::find($request->org_id);
+        $o->title = $request->title;
+        $o->address = $request->address;
+        $o->phone = $request->phone;
+        $o->website = $request->website;
+        $o->save();
+
+        return redirect()->back();
+    }
 }

@@ -80,5 +80,47 @@ class SettingsTableSeeder extends Seeder
         $ss = new ServiceSettings;
         $ss->name = 'ESI';
         $ss->save();
+
+
+
+        $js = new JobtitleSettings;
+        $js->name = 'Branch Marketing Manager';
+        $js->department_settings_id = 1;
+        $js->save();
+
+        $js = new JobtitleSettings;
+        $js->name = 'Web Designer';
+        $js->department_settings_id = 5;
+        $js->save();
+
+        $js = new JobtitleSettings;
+        $js->name = 'Software Tester';
+        $js->department_settings_id = 5;
+        $js->save();
+
+        $js = new JobtitleSettings;
+        $js->name = 'Data Operator';
+        $js->department_settings_id = 5;
+        $js->save();
+
+        $js = new JobtitleSettings;
+        $js->name = 'OPC Supervisor';
+        $js->department_settings_id = 3;
+        $js->save();
+
+        $js = new JobtitleSettings;
+        $js->name = 'OPC Executive';
+        $js->department_settings_id = 3;
+        $js->save();
+
+        $js = new JobtitleSettings;
+        $js->name = 'Relationship Manager';
+        $js->department_settings_id = 4;
+        $js->save();
+
+        $js = new JobtitleSettings;
+        $js->name = 'MRD Executive';
+        $js->department_settings_id = 4;
+        $js->save(); 
     }
 }
