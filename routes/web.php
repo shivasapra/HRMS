@@ -49,5 +49,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/service-add', 'SettingsController@addService')->name('service.add');
     Route::post('/Job-Title-add', 'SettingsController@addJobTitle')->name('job_title.add');
 
+    Route::get('/Organisation-General-information',function(){
+        return view('organisationGeneralInformation');
+    })->name('organisations.general.information');
+
+    Route::get('/Organisation-Locations',function(){
+        return view('organisationLocations');
+    })->name('organisations.locations');
+
+    Route::post('/add-organisations','HomeController@addOrganisations')->name('add.organisations');
 
 });

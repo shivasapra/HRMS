@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Organisations;
+
 class HomeController extends Controller
 {
     /**
@@ -24,5 +26,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function addOrganisations(Request $request, Organisations $o){
+        $o->title = $request->title;
+        $o->address = $request->address;
+        $o->phone = $request->phone;
+        $o->website = $request->website;
+        $o->save();
+
+        return redirect()->back();
     }
 }
