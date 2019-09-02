@@ -260,7 +260,8 @@
                                             Job Details
                                         </div>
                                         <div class="card-body">
-                                            <form method="POST">
+                                            <form method="post" id="cd" action="{{route('employee.jobDetails.update',$employee)}}">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
@@ -339,28 +340,19 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Employment Status</label>
-                                                            <input type="text" placeholder="Enter Employment Status" class="form-control disabled_attribute" value="Full Time Permanent" name="employment_status" disabled/>
+                                                            <input type="text" placeholder="Enter Employment Status" class="form-control disabled_attribute" value="{{$employee->JobDetails->employment_status}}" name="employment_status" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Joined Date</label>
-                                                            <input type="date" placeholder="Enter Joinded Date" class="form-control disabled_attribute" name="joined_date" disabled/>
+                                                            <input type="date" placeholder="Enter Joinded Date" class="form-control disabled_attribute" name="joined_date" value="{{$employee->JobDetails->joined_date}}" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Location</label>
-                                                            <select class="form-control disabled_attribute" name="location" disabled>
-                                                                <option value="0">-- Select --</option>
-                                                                <option value="1">Afghan</option>
-                                                                <option value="2">Albanian</option>
-                                                                <option value="3">Algerian</option>
-                                                                <option value="4">American</option>
-                                                                <option value="5">Andorran</option>
-                                                                <option value="6">Angolan</option>
-                                                                <option value="7">Antiguans</option>
-                                                            </select>
+                                                            <input type="text" placeholder="Enter Location" class="form-control disabled_attribute" name="location" value="{{$employee->JobDetails->location}}" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
@@ -370,13 +362,13 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Start Date</label>
-                                                            <input type="date" placeholder="Enter Start Date" class="form-control disabled_attribute" name="start_date" disabled/>
+                                                            <input type="date" placeholder="Enter Start Date" class="form-control disabled_attribute" name="employment_contract_start_date" value="{{$employee->JobDetails->employment_contract_start_date}}" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>End Date</label>
-                                                            <input type="date" placeholder="Enter End Date" class="form-control disabled_attribute" name="end_date" disabled/>
+                                                            <input type="date" placeholder="Enter End Date" class="form-control disabled_attribute" name="employment_contract_end_date" value="{{$employee->JobDetails->employment_contract_end_date}}" disabled/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -385,7 +377,7 @@
                                                         <div class="form-group">
                                                             <button type="button" class="btn btn-success remove_disabled_class">Edit</button>
                                                             <button type="submit" class="btn btn-success save_details" style="display:none;">Save</button>
-                                                            {{-- <button type="button" id="remove_disabled_class" class="btn btn-danger ml-2">Terminate Employee</button> --}}
+                                                            <button type="button"  class="btn btn-danger ml-2">Terminate Employee</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -505,7 +497,8 @@
                                             Report To
                                         </div>
                                         <div class="card-body">
-                                            <form method="POST">
+                                            <form method="post" id="pd" action="{{route('employee.reportToDetails.update',$employee)}}">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <h3>Add Supervisor</h3>
@@ -513,13 +506,13 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Name*</label>
-                                                            <input type="text" placeholder="Enter Name" class="form-control disabled_attribute" name="name" disabled/>
+                                                            <input type="text" placeholder="Enter Name" class="form-control disabled_attribute" value="{{$employee->report_to_name}}" name="report_to_name" disabled/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>Select Supervisor *</label>
-                                                            <select class="form-control disabled_attribute" name="select_supervisor" disabled>
+                                                            <label>Select Supervisor*</label>
+                                                            <select class="form-control disabled_attribute" name="report_to_supervisor" disabled>
                                                                 <option>---Select---</option>
                                                                 <option value="0">Accountant</option>
                                                                 <option value="0">Collection Manager</option>
@@ -549,28 +542,22 @@
                                             <a href="#" class="float-right btn btn-success" data-toggle="modal" data-target="#add_experience"><i class="menu-icon mdi mdi-plus mr-0"></i> ADD</a>
                                         </div>
                                         <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="media">
-                                                        <img src="{{asset('app/images/buildings.png')}}" class="align-self-center mr-3" style="width:60px">
-                                                        <div class="media-body text-left">
-                                                            <h3>Travelport Pvt Ltd.</h3>
-                                                            <h5 class="text-left mb-1">Tele Marketing Executive </h5>
-                                                            <h5 class="text-gray text-left">May, 2016 to Dec, 2018</h5>
+                                            @foreach($employee->WorkExperience->chunk(2) as $chunk)
+                                                <div class="row">
+                                                    @foreach($chunk as $we)
+                                                        <div class="col-md-6">
+                                                            <div class="media">
+                                                                <img src="{{asset('app/images/buildings.png')}}" class="align-self-center mr-3" style="width:60px">
+                                                                <div class="media-body text-left">
+                                                                    <h3>{{$we->organisation_name}}</h3>
+                                                                    <h5 class="text-left mb-1">{{$we->designation}} </h5>
+                                                                    <h5 class="text-gray text-left">{{$we->from_month}}, {{$we->from_year}} to {{$we->to_month}}, {{$we->to_year}}</h5>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="media">
-                                                        <img src="{{asset('app/images/buildings.png')}}" class="align-self-center mr-3" style="width:60px">
-                                                        <div class="media-body text-left">
-                                                            <h3>Cox & Kings Pvt Ltd.</h3>
-                                                            <h5 class="text-left mb-1">Tele Marketing Executive </h5>
-                                                            <h5 class="text-gray text-left">May, 2014 to Dec, 2015</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                    @endforeach
+                                                </div><br>
+                                            @endforeach
                                         </div>
                                     </div>
                                     </div>
@@ -719,7 +706,8 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="POST">
+                    <form method="POST" action="{{route('employee.workExperience.add',$employee)}}">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -738,38 +726,24 @@
                                     <label>From</label>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                    <select class="form-control" name="month">
-                                        <option>---Select Month----</option>
-                                        <option>Jan</option>
-                                        <option>Feb</option>
-                                        <option>Mar</option>
-                                        <option>Apr</option>
-                                        <option>May</option>
-                                        <option>Jun</option>
-                                        <option>Jul</option>
-                                        <option>Aug</option>
-                                        <option>Sep</option>
-                                        <option>Oct</option>
-                                        <option>Nov</option>
-                                        <option>Dec</option>
+                                    <select class="form-control" name="from_month">
+                                        <option value="">---Select Month----</option>
+                                        <option value="Jan">Jan</option>
+                                        <option value="Feb">Feb</option>
+                                        <option value="Mar">Mar</option>
+                                        <option value="Apr">Apr</option>
+                                        <option value="May">May</option>
+                                        <option value="Jun">Jun</option>
+                                        <option value="Jul">Jul</option>
+                                        <option value="Aug">Aug</option>
+                                        <option value="Sep">Sep</option>
+                                        <option value="Oct">Oct</option>
+                                        <option value="Nov">Nov</option>
+                                        <option value="Dec">Dec</option>
                                     </select>
                                         </div>
                                         <div class="col-sm-6">
-                                    <select class="form-control" name="month">
-                                        <option>---Select Year----</option>
-                                        <option>2008</option>
-                                        <option>2009</option>
-                                        <option>2010</option>
-                                        <option>2011</option>
-                                        <option>2012</option>
-                                        <option>2013</option>
-                                        <option>2014</option>
-                                        <option>2015</option>
-                                        <option>2016</option>
-                                        <option>2017</option>
-                                        <option>2018</option>
-                                        <option>2019</option>
-                                    </select>
+                                        <input type="text" maxlength="4" minlength="4" pattern="\d*" name="from_year" placeholder="Enter Year" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -779,38 +753,24 @@
                                     <label>To</label>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <select class="form-control" name="month">
-                                                <option>---Select Month----</option>
-                                                <option>Jan</option>
-                                                <option>Feb</option>
-                                                <option>Mar</option>
-                                                <option>Apr</option>
-                                                <option>May</option>
-                                                <option>Jun</option>
-                                                <option>Jul</option>
-                                                <option>Aug</option>
-                                                <option>Sep</option>
-                                                <option>Oct</option>
-                                                <option>Nov</option>
-                                                <option>Dec</option>
+                                            <select class="form-control" name="to_month">
+                                                <option value="">---Select Month----</option>
+                                                <option value="Jan">Jan</option>
+                                                <option value="Feb">Feb</option>
+                                                <option value="Mar">Mar</option>
+                                                <option value="Apr">Apr</option>
+                                                <option value="May">May</option>
+                                                <option value="Jun">Jun</option>
+                                                <option value="Jul">Jul</option>
+                                                <option value="Aug">Aug</option>
+                                                <option value="Sep">Sep</option>
+                                                <option value="Oct">Oct</option>
+                                                <option value="Nov">Nov</option>
+                                                <option value="Dec">Dec</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-6">
-                                            <select class="form-control" name="month">
-                                                <option>---Select Year----</option>
-                                                <option>2008</option>
-                                                <option>2009</option>
-                                                <option>2010</option>
-                                                <option>2011</option>
-                                                <option>2012</option>
-                                                <option>2013</option>
-                                                <option>2014</option>
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                            </select>
+                                            <input type="text" maxlength="4" minlength="4" pattern="\d*" name="to_year" placeholder="Enter Year" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -818,7 +778,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                    <button type="button" id="" class="btn btn-success">Save</button>
+                                <button type="submit"  class="btn btn-success">Save</button>
                             </div>
                         </div>
                     </form>

@@ -7,6 +7,7 @@ use App\Employee;
 use App\JobDetails;
 use App\ContactDetails;
 use App\User;
+use App\WorkExperience;
 use Auth;
 
 class EmployeeController extends Controller
@@ -113,5 +114,40 @@ class EmployeeController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function updateJD(Request $request, Employee $employee){
+        $jd = $employee->JobDetails;
+        $jd->department = $request->department;
+        $jd->job_title = $request->job_title;
+        $jd->employment_status = $request->employment_status;
+        $jd->joined_date = $request->joined_date;
+        $jd->location = $request->location;
+        $jd->employment_contract_start_date = $request->employment_contract_start_date;
+        $jd->employment_contract_end_date = $request->employment_contract_end_date;
+        $jd->save();
+
+        return redirect()->back();
+
+    }
+
+    public function updateReportTo(Request $request, Employee $employee){
+        $employee->report_to_name = $request->report_to_name;
+        $employee->report_to_supervisor = $request->report_to_supervisor;
+        $employee->save();
+
+        return redirect()->back();
+    }
+
+    public function addWorkExperience(Employee $employee, Request $request, WorkExperience $we){
+        $we->employee_id = $employee->id;
+        $we->organisation_name = $request->organisation_name;
+        $we->designation = $request->designation;
+        $we->from_month = $request->from_month;
+        $we->from_year = $request->from_year;
+        $we->to_month = $request->to_month;
+        $we->to_year = $request->to_year;
+        $we->save();
+        return redirect()->back();
     }
 }
