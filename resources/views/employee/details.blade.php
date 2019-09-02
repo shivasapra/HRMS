@@ -571,14 +571,9 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <ul class="skills">
-                                                        <li>HTML 5</li>
-                                                        <li>CSS 3</li>
-                                                        <li>Javascript</li>
-                                                        <li>Jquery</li>
-                                                        <li>SEO</li>
-                                                        <li>Manual Testing</li>
-                                                        <li>PHP</li>
-                                                        <li>Python</li>
+                                                        @foreach($employee->skills as $skill)
+                                                            <li>{{$skill->skills}}</li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -592,14 +587,15 @@
                                                 <a href="#" class="float-right btn btn-success" data-toggle="modal" data-target="#upload_attachment"><i class="menu-icon mdi mdi-plus mr-0"></i> ADD</a>
                                             </div>
                                             <div class="card-body">
+                                                @foreach($employee->attachments->chunk(4) as $chunk)
                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <a class="example-image-link" href="{{asset('app/images/certificate.jpg')}}" data-lightbox="example-1"><img class="example-image img-fluid" src="{{asset('app/images/certificate.jpg')}}" alt="certificate"/></a>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <a class="example-image-link" href="{{asset('app/images/certificate.jpg')}}" data-lightbox="example-2"><img class="example-image img-fluid" src="{{asset('app/images/certificate.jpg')}}" alt="certificate"/></a>
-                                                    </div>
-                                                </div>
+                                                    @foreach($chunk as $a)
+                                                        <div class="col-md-3">
+                                                            <a class="example-image-link" href="javascript:void(0)" data-lightbox="example-1"><img class="example-image img-fluid" src="{{asset($a->attachments)}}" alt="certificate"/></a>
+                                                        </div>
+                                                    @endforeach
+                                                </div><br>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -800,18 +796,19 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="POST">
+                    <form method="POST" action="{{route('employee.skills.add',$employee)}}">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Enter Skill</label>
-                                    <input type="text" placeholder="Enter Skill" class="form-control" name="skill"/>
+                                    <input type="text" placeholder="Enter Skill" class="form-control" name="skills"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="button" id="" class="btn btn-success">Save</button>
+                                <button type="submit" class="btn btn-success">Save</button>
                             </div>
                         </div>
                     </form>
@@ -833,11 +830,12 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form method="POST">
+                    <form method="POST" action="{{route('employee.attachment.add',$employee)}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mb-2">
-                                    <input type="file" id="attachment" class="form-control" name="attachment" style="display:none;"/>
+                                    <input type="file" id="attachment" class="form-control" name="attachments" accept="image/*" required style="display:none;"/>
                                     <label for="attachment" class="custom-file-upload">
                                         <i class="mdi mdi-cloud-upload"></i>
                                         Upload File</label>
@@ -846,7 +844,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="button" id="" class="btn btn-success">Save</button>
+                                <button type="submit" id="" class="btn btn-success">Save</button>
                             </div>
                         </div>
                     </form>

@@ -8,7 +8,8 @@ use App\JobDetails;
 use App\ContactDetails;
 use App\User;
 use App\WorkExperience;
-use Auth;
+use App\Skills;
+use App\Attachments;
 
 class EmployeeController extends Controller
 {
@@ -148,6 +149,25 @@ class EmployeeController extends Controller
         $we->to_month = $request->to_month;
         $we->to_year = $request->to_year;
         $we->save();
+        return redirect()->back();
+    }
+
+    public function addSkills(Employee $employee, Request $request, Skills $s){
+        $s->employee_id = $employee->id;
+        $s->skills = $request->skills;
+        $s->save();
+        return redirect()->back();
+    }
+
+    public function addAttachments(Employee $employee, Request $request, Attachments $a){
+        $a->employee_id = $employee->id;
+
+        $attachments = $request->attachments;
+        $attachments_new_name = time().$attachments->getClientOriginalName();
+        $attachments->move('uploads/employee',$attachments_new_name);
+        $a->attachments = 'uploads/employee/'.$attachments_new_name;
+
+        $a->save();
         return redirect()->back();
     }
 }
