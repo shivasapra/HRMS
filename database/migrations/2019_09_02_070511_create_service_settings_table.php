@@ -16,7 +16,7 @@ class CreateServiceSettingsTable extends Migration
         Schema::create('service_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('charges');
+            $table->string('charges')->nullable();
             $table->timestamps();
         });
     }
