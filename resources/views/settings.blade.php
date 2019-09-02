@@ -66,7 +66,7 @@
                                             <tr>
                                                 <td>{{$loop->index + 1}}</td>
                                                 <td>{{$j->name}}</td>
-                                                <td>{{$j->department->name}}</td>
+                                                <td>{{$j->DepartmentSettings->name}}</td>
                                                 <td>
                                                     <span class="dropdown">
                                                     <a href="#" class="btn btn-icons btn-rounded btn-primary dropdown-toggle after-none" data-toggle="dropdown">

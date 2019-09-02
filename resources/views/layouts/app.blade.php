@@ -233,12 +233,12 @@
                             <span class="menu-title">Official Letters</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="profile.php">
                             <i class="menu-icon mdi mdi-account"></i>
                             <span class="menu-title">Profile</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('settings')}}">
                             <i class="menu-icon mdi mdi-settings"></i>

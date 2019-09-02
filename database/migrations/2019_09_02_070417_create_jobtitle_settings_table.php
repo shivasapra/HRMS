@@ -15,7 +15,7 @@ class CreateJobtitleSettingsTable extends Migration
     {
         Schema::create('jobtitle_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('department_id');
+            $table->integer('department_settings_id');
             $table->string('name');
             $table->timestamps();
         });

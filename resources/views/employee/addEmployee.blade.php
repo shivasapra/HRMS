@@ -29,75 +29,18 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Department*</label>
-                                    <select class="form-control" id="department" name="department" required>
+                                    <select class="form-control" id="department" onchange="extractJobTitles(this)" name="department" required>
                                         <option value="">-- Select --</option>
-                                        <option value="Accountant">Accountant</option>
-                                        <option value="Collection Manager">Collection Manager</option>
-                                        <option value="HR Manager">HR Manager</option>
-                                        <option value="HR Executive">HR Executive</option>
-                                        <option value="Branch Marketing Manager (BMM)">Branch Marketing Manager (BMM)</option>
-                                        <option value="Tele Marketing Manager (TMM)">Tele Marketing Manager (TMM)</option>
-                                        <option value="Tele Marketing Supervisor (TMS)">Tele Marketing Supervisor (TMS)</option>
-                                        <option value="Tele Marketing Executive (TME)">Tele Marketing Executive (TME)</option>
-                                        <option value="Data Operator">Data Operator</option>
-                                        <option value="OPC Supervisor">OPC Supervisor</option>
-                                        <option value="OPC Executive">OPC Executive</option>
-                                        <option value="Relationship Manager">Relationship Manager</option>
-                                        <option value="MRD Executive">MRD Executive</option>
-                                        <option value="Corporate Operations">Corporate Operations</option>
-                                        <option value="Operations Head">Operations Head</option>
-                                        <option value="Unit Manager">Unit Manager</option>
-                                        <option value="Operation Team Manager">Operation Team Manager</option>
-                                        <option value="Sr. Travel Consultant">Sr. Travel Consultant</option>
-                                        <option value="Travel Consultant">Travel Consultant</option>
-                                        <option value="Cheif Sale Officer">Cheif Sale Officer</option>
-                                        <option value="Relational Manager">Relational Manager</option>
-                                        <option value="Branch Manager">Branch Manager</option>
-                                        <option value="Unit Manager">Unit Manager</option>
-                                        <option value="Sale Team Manager">Sale Team Manager</option>
-                                        <option value="Take Over Manager">Take Over Manager</option>
-                                        <option value="Senior Holiday Consultant">Senior Holiday Consultant</option>
-                                        <option value="Holiday Consultant">Holiday Consultant</option>
-                                        <option value="Business Develop Manager">Business Develop Manager</option>
-                                        <option value="Business Develop Executive">Business Develop Executive</option>
+                                        @foreach(App\DepartmentSettings::all() as $d)
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Job Title*</label>
-                                    <select class="form-control" id="job_title" name="job_title" required>
-                                        <option value="">-- Select --</option>
-                                        <option value="Accountant">Accountant</option>
-                                        <option value="Collection Manager">Collection Manager</option>
-                                        <option value="HR Manager">HR Manager</option>
-                                        <option value="HR Executive">HR Executive</option>
-                                        <option value="Branch Marketing Manager (BMM)">Branch Marketing Manager (BMM)</option>
-                                        <option value="Tele Marketing Manager (TMM)">Tele Marketing Manager (TMM)</option>
-                                        <option value="Tele Marketing Supervisor (TMS)">Tele Marketing Supervisor (TMS)</option>
-                                        <option value="Tele Marketing Executive (TME)">Tele Marketing Executive (TME)</option>
-                                        <option value="Data Operator">Data Operator</option>
-                                        <option value="OPC Supervisor">OPC Supervisor</option>
-                                        <option value="OPC Executive">OPC Executive</option>
-                                        <option value="Relationship Manager">Relationship Manager</option>
-                                        <option value="MRD Executive">MRD Executive</option>
-                                        <option value="Corporate Operations">Corporate Operations</option>
-                                        <option value="Operations Head">Operations Head</option>
-                                        <option value="Unit Manager">Unit Manager</option>
-                                        <option value="Operation Team Manager">Operation Team Manager</option>
-                                        <option value="Sr. Travel Consultant">Sr. Travel Consultant</option>
-                                        <option value="Travel Consultant">Travel Consultant</option>
-                                        <option value="Cheif Sale Officer">Cheif Sale Officer</option>
-                                        <option value="Relational Manager">Relational Manager</option>
-                                        <option value="Branch Manager">Branch Manager</option>
-                                        <option value="Unit Manager">Unit Manager</option>
-                                        <option value="Sale Team Manager">Sale Team Manager</option>
-                                        <option value="Take Over Manager">Take Over Manager</option>
-                                        <option value="Senior Holiday Consultant">Senior Holiday Consultant</option>
-                                        <option value="Holiday Consultant">Holiday Consultant</option>
-                                        <option value="Business Develop Manager">Business Develop Manager</option>
-                                        <option value="Business Develop Executive">Business Develop Executive</option>
-                                    </select>
+                                    <div id="job-append"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -164,8 +107,29 @@
             </div>
         </div>
     </div>
+    
 @endsection
 @section('scripts')
+    <script>
+        function extractJobTitles(temp){
+            var did = temp.value;
+            @foreach(App\DepartmentSettings::all() as $d)
+                var fetched_id = JSON.parse({{$d->id}});
+                if(did == fetched_id){
+                    var data =
+                    '<select class="form-control" id="job_title" name="job_title" required>'+
+                        '<option value="">--Select--</option>'+
+                        '@foreach($d->JobtitleSettings as $j)'+
+                            '<option value="{{$j->id}}">{{$j->name}}</option>'+
+                        '@endforeach'+
+                    '</select>';
+                }
+            @endforeach
+                $('#job-append').html(data);
+            
+                
+        }
+    </script>
     {{-- <script>
         var i = 2;
         function addRequired(){

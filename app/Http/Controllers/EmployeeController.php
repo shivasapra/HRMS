@@ -7,6 +7,8 @@ use App\Employee;
 use App\JobDetails;
 use App\ContactDetails;
 use App\User;
+use App\DepartmentSettings;
+use App\JobtitleSettings;
 use App\WorkExperience;
 use App\Skills;
 use App\Attachments;
@@ -62,8 +64,8 @@ class EmployeeController extends Controller
         $employee->save();
 
         $job_details->employee_id = $employee->id;
-        $job_details->department = $request->department;
-        $job_details->job_title = $request->job_title;
+        $job_details->department = DepartmentSettings::find($request->department)->name;
+        $job_details->job_title = JobtitleSettings::find($request->job_title)->name;
         $job_details->employment_status = $request->employment_status;
         $job_details->save();
         notification('Employee Added Successfully!!','Employee Id: '.$employee->unique_id.'\n'.'Name: '.$employee->first_name.' '.$employee->last_name,'success','Ok');
@@ -119,8 +121,8 @@ class EmployeeController extends Controller
 
     public function updateJD(Request $request, Employee $employee){
         $jd = $employee->JobDetails;
-        $jd->department = $request->department;
-        $jd->job_title = $request->job_title;
+        $jd->department = DepartmentSettings::find($request->department)->name;
+        $jd->job_title = JobtitleSettings::find($request->job_title)->name;
         $jd->employment_status = $request->employment_status;
         $jd->joined_date = $request->joined_date;
         $jd->location = $request->location;

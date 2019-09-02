@@ -38,7 +38,7 @@ class SettingsController extends Controller
     }
 
     public function addJobtitle(JobtitleSettings $j, Request $request){
-        $j->department_id = $request->department;
+        $j->department_settings_id = $request->department;
         $j->name = $request->job_title;
         $j->save();
         return redirect()->back();
