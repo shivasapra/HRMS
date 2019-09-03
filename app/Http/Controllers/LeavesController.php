@@ -14,7 +14,7 @@ class LeavesController extends Controller
         if(Auth::user()->admin){
             $leaves = Leaves::where('comment',null)->get();
         }else{
-            $leaves = Auth::user()->employee->Leaves->where('comment',null)->get();
+            $leaves = Auth::user()->employee->Leaves()->where('comment',null)->get();
         }
         return view('leaves.index')->with('leaves',$leaves);
     }
@@ -31,7 +31,7 @@ class LeavesController extends Controller
         if(Auth::user()->admin){
             $leaves = Leaves::where('comment','!=',null)->get();
         }else{
-            $leaves = Auth::user()->employee->Leaves->where('comment','!=',null)->get();
+            $leaves = Auth::user()->employee->Leaves()->where('comment','!=',null)->get();
         }
 
         return view('leaves.assigned')->with('leaves',$leaves);
@@ -77,8 +77,8 @@ class LeavesController extends Controller
     }
 
     public function showPdf($id){
-        $leave = Leave::find($id);
-        return \PDF::loadHtml($leave->pdf)->stream();
+        $leave = Leaves::find($id);
+        return \PDF::loadHtml($leave->pdf)->download();
     }
 
 }

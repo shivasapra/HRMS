@@ -53,16 +53,17 @@
                                             <td>{{$leave->leave_type}}</td>
                                             <td>{{$leave->no_of_days}}</td>
                                             <td class="test2">
-                                                <input type="text" hidden value="{{$leave->id}}" class="leave_id">
-                                                <button   type="button" onClick="Fun2(this);" class="btn btn-primary">View</button>
+                                                <a href="{{route('downloadPdf',$leave)}}" class="btn btn-primary btn-sm">Download</a>
+                                                {{-- <input type="text" hidden value="{{$leave->id}}" class="leave_id">
+                                                <button   type="button" onClick="Fun2(this);" class="btn btn-primary">View</button> --}}
                                             </td>
                                             <td>
                                                 @if($leave->status == 0)
-                                                    <label class="badge bg-red">Rejected</label>
+                                                    <label class="badge badge-red">Rejected</label>
                                                 @elseif($leave->status == 1)
-                                                    <label class="badge bg-success">Approved</label>
+                                                    <label class="badge badge-success">Approved</label>
                                                 @elseif($leave->status == 2)
-                                                    <label class="badge bg-warning">In progress</label>
+                                                    <label class="badge badge-warning">In progress</label>
                                                 @endif
                                                 @if($leave->status != 2)
                                                     <br>{{$leave->comment}}
@@ -147,30 +148,6 @@
 	  $('#status-modal').html(data);
       
 	  $('#target').click();
-	}
-    function Fun2(temp){
-    var leave_id = $(temp).parents('.test2').find('.leave_id').val();
-    var path = window.location+'show/pdf/'+leave_id; 
-    var data = 
-    '<div class="modal fade" id="leave_view">'+
-            '<div class="modal-dialog modal-dialog-centered modal-lg">'+
-                '<div class="modal-content">'+
-    
-                    '<!-- Modal Header -->'+
-                    '<div class="modal-header">'+
-                        '<h4 class="modal-title">Leave Application</h4>'+
-                        '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
-                    '</div>'+
-                    
-                    '<!-- Modal body -->'+
-                    '<div class="modal-body">'+
-                        '<iframe src="'+path+'" width="100%" height="500px"></iframe>'+
-                    '</div>'+
-                '</div>'+
-            '</div>'+
-        '</div>';
-	  $('#view').html(data);
-	  $('#target2').click();
 	}
 </script>
 @stop
