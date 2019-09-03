@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app/vendors/css/jquery.dataTables.css')}}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{asset('app/images/favicon.png')}}"/>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
     @yield('styles')
 </head>
 
@@ -324,7 +325,16 @@
      </script>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
      <script src="http://malsup.github.com/jquery.form.js"></script> 
-     {{ forgetNotification() }}
+     
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+     <script>
+        $(document).ready(function() {
+            $('.summernote').summernote();
+        });
+    </script>
     @yield('scripts')
+    {{ forgetNotification() }}
 </body>
 </html>
