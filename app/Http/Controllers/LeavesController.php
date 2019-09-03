@@ -46,7 +46,7 @@ class LeavesController extends Controller
         $leave->comment = $request->comment;
         $leave->status = 1 ;
         $leave->save();
-        return redirect()->route('leave.applications');
+        return redirect()->route('leave.assigned');
     }
 
     public function addLeave(Request $request, Leaves $leave){

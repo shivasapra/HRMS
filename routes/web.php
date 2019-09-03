@@ -69,5 +69,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/assigned-leaves','LeavesController@assigned')->name('leave.assigned');
 
     Route::get('/searchEmployee','LeavesController@EmployeeSearch');
+    Route::get('/show/pdf/{id}','LeavesController@ShowPdf');
 
 });
