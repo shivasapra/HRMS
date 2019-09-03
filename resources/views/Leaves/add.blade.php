@@ -12,8 +12,11 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('leave.add.view')}}">Add Leave</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('leave.assigned')}}">Assigned Leaves</a>
+                        </li>
                     </ul>
-                    <form method="POST"  action="{{route('leave.store')}}" class="mt-4 col-md-6">
+                    <form method="POST"  action="{{route('leave.add')}}" class="mt-4 col-md-6">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">

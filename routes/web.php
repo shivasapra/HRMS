@@ -64,6 +64,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/leave-applications','LeavesController@index')->name('leave.applications');
     Route::get('/assign-leave','LeavesController@assign')->name('leave.assign.view');
     Route::get('/add-leave-applications','LeavesController@add')->name('leave.add.view');
-    Route::post('/store-leave-applications','LeavesController@store')->name('leave.store');
+    Route::post('/assign-leave','LeavesController@assignLeave')->name('leave.assign');
+    Route::post('/add-leave-application','LeavesController@addLeave')->name('leave.add');
+    Route::get('/assigned-leaves','LeavesController@assigned')->name('leave.assigned');
+
+    Route::get('/searchEmployee','LeavesController@EmployeeSearch');
 
 });
