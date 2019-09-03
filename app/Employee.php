@@ -39,4 +39,8 @@ class Employee extends Model
     public function Allowances(){
         return $this->hasMany('App\Allowances');
     }
+
+    public function Leaves(){
+        return $this->hasMany('App\Leaves');
+    }
 }

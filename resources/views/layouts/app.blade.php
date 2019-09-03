@@ -198,7 +198,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="leave-applications.php">
+                        <a class="nav-link" href="{{route('leave.applications')}}">
                             <i class="menu-icon mdi mdi-file-document-box"></i>
                             <span class="menu-title">Leave Applications</span>
                         </a>

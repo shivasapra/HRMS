@@ -61,4 +61,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/update-organisations','HomeController@updateOrganisations')->name('update.organisations');
     Route::get('/delete-organisations/{o}','HomeController@deleteOrganisation')->name('organisation.delete');
 
+    Route::get('/leave-applications','LeavesController@index')->name('leave.applications');
+    Route::get('/assign-leave','LeavesController@assign')->name('leave.assign.view');
+    Route::get('/add-leave-applications','LeavesController@add')->name('leave.add.view');
+    Route::post('/store-leave-applications','LeavesController@store')->name('leave.store');
+
 });
