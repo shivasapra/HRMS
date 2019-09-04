@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Organisations;
+use App\Holidays;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -56,5 +58,16 @@ class HomeController extends Controller
 
     public function holidays(){
         return view('holidays');
+    }
+
+    public function addHoliday(Request $request, Holidays $holiday){
+        $holiday->date = $request->date;
+        $holiday->holiday_name = $request->holiday_name;
+        $holiday->day = explode('-',Carbon::parse($request->date)->format('d-M-Y'))[0];
+        $holiday->month = explode('-',Carbon::parse($request->date)->format('d-M-Y'))[1];
+        $holiday->year = explode('-',Carbon::parse($request->date)->format('d-M-Y'))[2];
+        $holiday->save();
+
+        return redirect()->back();
     }
 }

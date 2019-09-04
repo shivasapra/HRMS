@@ -9,69 +9,23 @@
                 <div class="">
                     <h4 class="ml-3">January</h4>
                     <ul class="holidays_list">
-                        <li><a href="#" class="btn-primary">01</a>
+                        <li><a href="javascript:void(0)" class="btn-primary">01</a>
                             <h5 class="text-uppercase text-gray mb-1">Wed</h5>
                             <h4>Holiday</h4>
                         </li>
-                        <li><a href="#" class="btn-danger">09</a>
+                        <li><a href="javascript:void(0)" class="btn-danger">09</a>
                             <h5 class="text-uppercase text-gray mb-1">Thr</h5>
                             <h4>Makar Shakranti</h4>
                         </li>
-                        <li><a href="#" class="btn-success">26</a>
+                        <li><a href="javascript:void(0)" class="btn-success">26</a>
                             <h5 class="text-uppercase text-gray mb-1">Fri</h5>
                             <h4>Republic Day</h4>
                         </li>
-                        <li><a href="#" class="btn-warning">31</a>
+                        <li><a href="javascript:void(0)" class="btn-warning">31</a>
                             <h5 class="text-uppercase text-gray mb-1">Sun</h5>
                             <h4>Good Friday</h4>
                         </li>
                     </ul><hr>
-                    <h4 class="ml-3">February</h4>
-                    <ul class="holidays_list">
-                        <li><a href="#" class="btn-primary">01</a>
-                            <h5 class="text-uppercase text-gray mb-1">Wed</h5>
-                            <h4>Holiday</h4>
-                        </li>
-                        <li><a href="#" class="btn-danger">09</a>
-                            <h5 class="text-uppercase text-gray mb-1">Thr</h5>
-                            <h4>Makar Shakranti</h4>
-                        </li>
-                        <li><a href="#" class="btn-success">14</a>
-                            <h5 class="text-uppercase text-gray mb-1">Fri</h5>
-                            <h4>Republic Day</h4>
-                        </li>
-                        <li><a href="#" class="btn-warning">21</a>
-                            <h5 class="text-uppercase text-gray mb-1">Sun</h5>
-                            <h4>Good Friday</h4>
-                        </li>
-                        <li><a href="#" class="btn-primary">25</a>
-                            <h5 class="text-uppercase text-gray mb-1">Wed</h5>
-                            <h4>Holiday</h4>
-                        </li>
-                        <li><a href="#" class="btn-danger">31</a>
-                            <h5 class="text-uppercase text-gray mb-1">Thr</h5>
-                            <h4>Makar Shakranti</h4>
-                        </li>
-                    </ul><hr>
-                    <h4 class="ml-3">March</h4>
-                    <ul class="holidays_list">
-                        <li><a href="#" class="btn-primary">01</a>
-                            <h5 class="text-uppercase text-gray mb-1">Wed</h5>
-                            <h4>Holiday</h4>
-                        </li>
-                        <li><a href="#" class="btn-danger">09</a>
-                            <h5 class="text-uppercase text-gray mb-1">Thr</h5>
-                            <h4>Makar Shakranti</h4>
-                        </li>
-                        <li><a href="#" class="btn-success">26</a>
-                            <h5 class="text-uppercase text-gray mb-1">Fri</h5>
-                            <h4>Republic Day</h4>
-                        </li>
-                        <li><a href="#" class="btn-warning">31</a>
-                            <h5 class="text-uppercase text-gray mb-1">Sun</h5>
-                            <h4>Good Friday</h4>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -91,18 +45,19 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form method="POST">
+                <form method="POST" action="{{route('add.holiday')}}">
+                    @csrf
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="date" class="form-control" name="date"/>
+                        <input type="date" class="form-control" name="date" required/>
                     </div>
                     <div class="form-group">
                         <label>Holiday Name</label>
-                        <input type="text" class="form-control" name="holiday_name" placeholder="Enter Holiday Name"/>
+                        <input type="text" class="form-control" name="holiday_name" required placeholder="Enter Holiday Name"/>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" id="" class="btn btn-success">Add</button>
+                            <button type="submit" id="" class="btn btn-success">Add</button>
                         </div>
                     </div>
                 </form>

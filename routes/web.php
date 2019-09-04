@@ -73,5 +73,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/download/pdf/{id}','LeavesController@ShowPdf')->name('downloadPdf');
 
     Route::get('/holidays','HomeController@holidays')->name('holidays');
+    Route::post('/add-holiday','HomeController@addHoliday')->name('add.holiday');
 
 });
