@@ -223,7 +223,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="holidays.php">
+                        <a class="nav-link" href="{{route('holidays')}}">
                             <i class="menu-icon mdi mdi-calendar-check"></i>
                             <span class="menu-title">Holidays</span>
                         </a>

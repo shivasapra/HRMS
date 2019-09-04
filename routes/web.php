@@ -72,4 +72,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/searchEmployee','LeavesController@EmployeeSearch');
     Route::get('/download/pdf/{id}','LeavesController@ShowPdf')->name('downloadPdf');
 
+    Route::get('/holidays','HomeController@holidays')->name('holidays');
+
 });

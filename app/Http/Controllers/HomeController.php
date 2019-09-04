@@ -53,4 +53,8 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function holidays(){
+        return view('holidays');
+    }
 }
