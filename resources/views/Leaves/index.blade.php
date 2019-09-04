@@ -59,7 +59,7 @@
                                             </td>
                                             <td>
                                                 @if($leave->status == 0)
-                                                    <label class="badge badge-red">Rejected</label>
+                                                    <label class="badge badge-danger">Rejected</label>
                                                 @elseif($leave->status == 1)
                                                     <label class="badge badge-success">Approved</label>
                                                 @elseif($leave->status == 2)
@@ -72,9 +72,9 @@
                                             @if(Auth::user()->admin)
                                                 <td class="test">
                                                         <input type="text" hidden value="{{$leave->id}}" class="leave_id">
-                                                        <button   type="button" onClick="Fun(this);" class="btn btn-icons btn-rounded btn-success">
-                                                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                                    </button>
+                                                        <button   type="button" onclick="Fun(this);" class="btn btn-icons btn-rounded btn-success">
+                                                            <i class="mdi mdi-send" aria-hidden="true"></i>
+                                                        </button>
                                                 </td>
                                             @endif
                                         </tr>
@@ -88,17 +88,14 @@
         </div>
     </div>
 
-    
-    <a href="#" id="target2" style="display:none;" data-toggle="modal" data-target="#leave_view"></a>
-    <a href="#" id="target" style="display:none;" data-toggle="modal" data-target="#leave_status"></a>
+
+    <button type="button" id="target" style="display:none;" data-toggle="modal" data-target="#leave_status"></button>
     <div id="status-modal"></div>
-    <div id="view"></div>
 @endsection
 @section('scripts')
   <script>
     function Fun(temp){
 		var leave_id = $(temp).parents('.test').find('.leave_id').val();
-		
 		var data = 
         '<div class="modal fade" id="leave_status">'+
             '<div class="modal-dialog modal-dialog modal-dialog-centered">'+
@@ -112,7 +109,7 @@
     
                     '<!-- Modal body -->'+
                     '<div class="modal-body">'+
-                        '<form action="" method="post">'+
+                        '<form action="{{route("leave.status")}}" method="post">'+
                             '@csrf'+
                             '<div class="row">'+
                                 '<div class="col-md-12">'+

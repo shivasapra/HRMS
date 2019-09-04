@@ -12,9 +12,9 @@ class LeavesController extends Controller
 {
     public function index(){
         if(Auth::user()->admin){
-            $leaves = Leaves::where('comment',null)->get();
+            $leaves = Leaves::where('assigned',0)->get();
         }else{
-            $leaves = Auth::user()->employee->Leaves()->where('comment',null)->get();
+            $leaves = Auth::user()->employee->Leaves()->where('assigned',0)->get();
         }
         return view('leaves.index')->with('leaves',$leaves);
     }
@@ -29,9 +29,9 @@ class LeavesController extends Controller
 
     public function assigned(){
         if(Auth::user()->admin){
-            $leaves = Leaves::where('comment','!=',null)->get();
+            $leaves = Leaves::where('assigned',1)->get();
         }else{
-            $leaves = Auth::user()->employee->Leaves()->where('comment','!=',null)->get();
+            $leaves = Auth::user()->employee->Leaves()->where('assigned',1)->get();
         }
 
         return view('leaves.assigned')->with('leaves',$leaves);
@@ -45,6 +45,7 @@ class LeavesController extends Controller
         $leave->no_of_days = Carbon::parse($request->from)->diffInDays(Carbon::parse($request->to))+1;
         $leave->comment = $request->comment;
         $leave->status = 1 ;
+        $leave->assigned = 1 ;
         $leave->save();
         return redirect()->route('leave.assigned');
     }
@@ -58,6 +59,15 @@ class LeavesController extends Controller
         $leave->pdf = $request->pdf;
         $leave->save();
         return redirect()->route('leave.applications');
+    }
+
+    public function status(Request $request){
+        $leave = Leaves::find($request->leave_id);
+        $leave->status = $request->status;
+        $leave->comment = $request->comment;
+        $leave->save();
+
+        return redirect()->back();
     }
 
     

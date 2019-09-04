@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/assign-leave','LeavesController@assignLeave')->name('leave.assign');
     Route::post('/add-leave-application','LeavesController@addLeave')->name('leave.add');
     Route::get('/assigned-leaves','LeavesController@assigned')->name('leave.assigned');
+    Route::post('/leave-status','LeavesController@status')->name('leave.status');
 
     Route::get('/searchEmployee','LeavesController@EmployeeSearch');
     Route::get('/download/pdf/{id}','LeavesController@ShowPdf')->name('downloadPdf');
