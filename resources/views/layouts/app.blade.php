@@ -211,7 +211,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="reports.php">
+                        <a class="nav-link" href="{{route('reports')}}">
                             <i class="menu-icon mdi mdi-chart-line"></i>
                             <span class="menu-title">Reports</span>
                         </a>

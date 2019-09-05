@@ -26,7 +26,8 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   dd(Carbon::now()->format('l, d F, Y'));
+    {   
+        // dd(Carbon::now()->format('l, d F, Y'));
         return view('home');
     }
 
@@ -70,5 +71,10 @@ class HomeController extends Controller
         $holiday->save();
 
         return redirect()->back();
+    }
+
+
+    public function reports(){
+        return view('reports');
     }
 }

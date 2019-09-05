@@ -461,10 +461,9 @@
                                                             <label>Select Supervisor*</label>
                                                             <select class="form-control disabled_attribute" name="report_to_supervisor" disabled>
                                                                 <option>---Select---</option>
-                                                                <option value="0">Accountant</option>
-                                                                <option value="0">Collection Manager</option>
-                                                                <option value="0">HR Manager</option>
-                                                                <option value="0">HR Executive</option>
+                                                                @foreach(App\JobtitleSettings::all() as $j)
+                                                                    <option value="{{$j->name}}">{{$j->name}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>

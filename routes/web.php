@@ -75,4 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/holidays','HomeController@holidays')->name('holidays');
     Route::post('/add-holiday','HomeController@addHoliday')->name('add.holiday');
 
+
+    Route::get('/reports','HomeController@reports')->name('reports');
+
 });
