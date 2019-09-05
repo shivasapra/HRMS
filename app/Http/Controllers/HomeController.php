@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Organisations;
 use App\Holidays;
 use Carbon\Carbon;
+use Auth;
+Use App\Reports;
 
 class HomeController extends Controller
 {
@@ -75,6 +77,27 @@ class HomeController extends Controller
 
 
     public function reports(){
-        return view('reports');
+        if(Auth::user()->admin){
+            $reports = Reports::all();
+        }else{
+            $reports = Auth::user()->employee->Reports;
+        }
+
+        return view('reports')->with('reports',$reports);
+    }
+
+    public function addReport(Request $request, Reports $r){
+        $r->employee_id = Auth::user()->employee->id;
+        $r->job_title = Auth::user()->employee->JobDetails->job_title;
+        $r->reporting_to = Auth::user()->employee->report_to_name;
+        $r->description = $request->description;
+        $r->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteReport(Reports $r){
+        $r->delete();
+        return redirect()->back();
     }
 }

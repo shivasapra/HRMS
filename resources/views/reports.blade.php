@@ -9,7 +9,7 @@
                         </h2>
                     <h5 class="float-right text-primary">{{Carbon\Carbon::now()->format('d M, Y')}}
                         @if(!Auth::user()->admin)
-                        <a href="add-report.php" class="btn btn-sm btn-success mt-2">Add Report</a>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#add_report" class="btn btn-success float-right">Add Report</a>
                         @endif
                     </h5>
                         
@@ -73,20 +73,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>01/05/2019</td>
-                                        <td>06:32 PM</td>
-                                        @if(Auth::user()->admin)
-                                            <td>Trishnik Arora</td>
-                                            <td>Tele Marketing Executive</td>
-                                        @endif
-                                        <td>Zuber</td>
-                                        <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</td>
-                                        @if(Auth::user()->admin)
-                                            <td><a href="#" class="custom-circle-btn"><i class="mdi mdi-delete"></i></a></td>
-                                        @endif
-                                    </tr>
+                                        @foreach($reports->reverse() as $r)
+                                            <tr>
+                                                <th>{{$loop->index+1}}.</th>
+                                                <td>{{$r->created_at->toDateString()}}</td>
+                                                <td>{{$r->created_at->toTimeString()}}</td>
+                                                @if(Auth::user()->admin)
+                                                    <td>{{$r->employee->first_name.' '.$r->employee->last_name}}</td>
+                                                    <td>{{$r->job_title}}</td>
+                                                @endif
+                                                <td>{{$r->reporting_to}}</td>
+                                                <td>{{$r->description}}</td>
+                                                @if(Auth::user()->admin)
+                                                    <td><a href="{{route('report.delete',$r)}}" class="custom-circle-btn"><i class="mdi mdi-delete"></i></a></td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -96,4 +98,33 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="add_report">
+            <div class="modal-dialog modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+        
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Report</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+        
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form method="POST" action="{{route('add.report')}}">
+                            @csrf
+                            <div class="form-group">
+                                <label>Description</label><br>
+                                <textarea name="description" id="" class="form-control" style="height:150px;"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" id="" class="btn btn-success">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection
