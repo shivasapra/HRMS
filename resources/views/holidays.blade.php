@@ -7,25 +7,39 @@
                 <h2 class="mb-4 h3"><i class="mdi mdi-calendar-remove"></i> &nbsp; Holidays List
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#add_holiday" class="btn btn-primary float-right">Add New</a></h2><hr>
                 <div class="">
-                    <h4 class="ml-3">January</h4>
-                    <ul class="holidays_list">
-                        <li><a href="javascript:void(0)" class="btn-primary">01</a>
-                            <h5 class="text-uppercase text-gray mb-1">Wed</h5>
-                            <h4>Holiday</h4>
-                        </li>
-                        <li><a href="javascript:void(0)" class="btn-danger">09</a>
-                            <h5 class="text-uppercase text-gray mb-1">Thr</h5>
-                            <h4>Makar Shakranti</h4>
-                        </li>
-                        <li><a href="javascript:void(0)" class="btn-success">26</a>
-                            <h5 class="text-uppercase text-gray mb-1">Fri</h5>
-                            <h4>Republic Day</h4>
-                        </li>
-                        <li><a href="javascript:void(0)" class="btn-warning">31</a>
-                            <h5 class="text-uppercase text-gray mb-1">Sun</h5>
-                            <h4>Good Friday</h4>
-                        </li>
-                    </ul><hr>
+                    @foreach(collect($holidays->sortBy('day')->sortBy('month_no')->groupBy('month')) as $col)
+                        @php $i = 0; @endphp
+                        <h4 class="ml-3">{{$col->first()->month}}</h4>
+                        <ul class="holidays_list">
+                            @foreach($col as $h)
+                                @php
+                                if($i == 5){
+                                    $i = 0;
+                                } 
+                                $i++;
+                                
+                                if($i == 1){
+                                    $color = 'btn-primary';
+                                }elseif($i == 2){
+                                    $color = 'btn-warning';
+                                }elseif($i == 3){
+                                    $color = 'btn-success';
+                                }elseif($i == 4){
+                                    $color = 'btn-danger';
+                                }elseif($i == 5){
+                                    $color = 'btn-info';
+                                }
+                                
+                                @endphp
+                                <li><a href="javascript:void(0)" class="{{$color}}">{{$h->day}}</a>
+                                    <h5 class="text-uppercase text-gray mb-1">{{Carbon\Carbon::parse($h->date)->format('l')}}</h5>
+                                    <h4>{{$h->holiday_name}}</h4>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <hr>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>

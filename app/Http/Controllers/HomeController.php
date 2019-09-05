@@ -26,7 +26,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {   dd(Carbon::now()->format('l, d F, Y'));
         return view('home');
     }
 
@@ -57,15 +57,16 @@ class HomeController extends Controller
     }
 
     public function holidays(){
-        return view('holidays');
+        return view('holidays')->with('holidays',Holidays::where('year',Carbon::now()->year)->get());
     }
 
     public function addHoliday(Request $request, Holidays $holiday){
         $holiday->date = $request->date;
         $holiday->holiday_name = $request->holiday_name;
         $holiday->day = explode('-',Carbon::parse($request->date)->format('d-M-Y'))[0];
-        $holiday->month = explode('-',Carbon::parse($request->date)->format('d-M-Y'))[1];
+        $holiday->month = explode('-',Carbon::parse($request->date)->format('d-F-Y'))[1];
         $holiday->year = explode('-',Carbon::parse($request->date)->format('d-M-Y'))[2];
+        $holiday->month_no = explode('-',Carbon::parse($request->date)->format('d-m-Y'))[1];
         $holiday->save();
 
         return redirect()->back();
