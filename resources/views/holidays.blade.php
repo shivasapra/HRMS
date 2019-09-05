@@ -13,23 +13,8 @@
                         <ul class="holidays_list">
                             @foreach($col as $h)
                                 @php
-                                if($i == 5){
-                                    $i = 0;
-                                } 
-                                $i++;
-                                
-                                if($i == 1){
-                                    $color = 'btn-primary';
-                                }elseif($i == 2){
-                                    $color = 'btn-warning';
-                                }elseif($i == 3){
-                                    $color = 'btn-success';
-                                }elseif($i == 4){
-                                    $color = 'btn-danger';
-                                }elseif($i == 5){
-                                    $color = 'btn-info';
-                                }
-                                
+                                ($i == 5)? $i = 1 : $i++ ;
+                                ($i == 1)? $color = 'btn-primary': (($i == 2)? $color = 'btn-warning' : (($i == 3) ? $color = 'btn-success': (($i == 4)? $color = 'btn-danger': (($i == 5)? $color = 'btn-info': $color))));
                                 @endphp
                                 <li><a href="javascript:void(0)" class="{{$color}}">{{$h->day}}</a>
                                     <h5 class="text-uppercase text-gray mb-1">{{Carbon\Carbon::parse($h->date)->format('l')}}</h5>
