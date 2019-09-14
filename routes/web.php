@@ -79,6 +79,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/reports','HomeController@reports')->name('reports');
     Route::post('/add-report','HomeController@addReport')->name('add.report');
     Route::get('/delete-report/{r}','HomeController@deleteReport')->name('report.delete');
+
+    Route::get('/profile/','HomeController@profile')->name('profile');
     
 
 });

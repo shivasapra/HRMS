@@ -100,4 +100,8 @@ class HomeController extends Controller
         $r->delete();
         return redirect()->back();
     }
+
+    public function profile(){
+        return view('profile');
+    }
 }

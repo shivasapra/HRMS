@@ -251,7 +251,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{route('profile')}}">
                                 <i class="menu-icon mdi mdi-account"></i>
                                 <span class="menu-title">Profile</span>
                             </a>
