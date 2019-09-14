@@ -186,72 +186,125 @@
                             <span class="menu-title">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('employee.add')}}">
-                            <i class="menu-icon mdi mdi-account-plus"></i>
-                            <span class="menu-title">Add Employee</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('employee.index')}}">
-                            <i class="menu-icon mdi mdi-account-multiple"></i>
-                            <span class="menu-title">View Employees</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('leave.applications')}}">
-                            <i class="menu-icon mdi mdi-file-document-box"></i>
-                            <span class="menu-title">Leave Applications</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="attendance.php">
-                            <i class="menu-icon mdi mdi-table"></i>
-                            <span class="menu-title">Attendance</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('reports')}}">
-                            <i class="menu-icon mdi mdi-chart-line"></i>
-                            <span class="menu-title">Reports</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="goals.php">
-                            <i class="menu-icon mdi mdi-trophy-variant"></i>
-                            <span class="menu-title">Goals</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('holidays')}}">
-                            <i class="menu-icon mdi mdi-calendar-check"></i>
-                            <span class="menu-title">Holidays</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="official-letters.php">
-                            <i class="menu-icon mdi mdi-file-document"></i>
-                            <span class="menu-title">Official Letters</span>
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="profile.php">
-                            <i class="menu-icon mdi mdi-account"></i>
-                            <span class="menu-title">Profile</span>
-                        </a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('settings')}}">
-                            <i class="menu-icon mdi mdi-settings"></i>
-                            <span class="menu-title">Settings</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('organisations.general.information')}}">
-                            <i class="menu-icon mdi mdi-home-modern"></i>
-                            <span class="menu-title">Organization</span>
-                        </a>
-                    </li>
+
+                    @if(Auth::user()->admin)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('employee.add')}}">
+                                <i class="menu-icon mdi mdi-account-plus"></i>
+                                <span class="menu-title">Add Employee</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('employee.index')}}">
+                                <i class="menu-icon mdi mdi-account-multiple"></i>
+                                <span class="menu-title">View Employees</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('leave.applications')}}">
+                                <i class="menu-icon mdi mdi-file-document-box"></i>
+                                <span class="menu-title">Leave Applications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="attendance.php">
+                                <i class="menu-icon mdi mdi-table"></i>
+                                <span class="menu-title">Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('reports')}}">
+                                <i class="menu-icon mdi mdi-chart-line"></i>
+                                <span class="menu-title">Reports</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="goals.php">
+                                <i class="menu-icon mdi mdi-trophy-variant"></i>
+                                <span class="menu-title">Goals</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('holidays')}}">
+                                <i class="menu-icon mdi mdi-calendar-check"></i>
+                                <span class="menu-title">Holidays</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="official-letters.php">
+                                <i class="menu-icon mdi mdi-file-document"></i>
+                                <span class="menu-title">Official Letters</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('settings')}}">
+                                <i class="menu-icon mdi mdi-settings"></i>
+                                <span class="menu-title">Settings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('organisations.general.information')}}">
+                                <i class="menu-icon mdi mdi-home-modern"></i>
+                                <span class="menu-title">Organization</span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="menu-icon mdi mdi-account"></i>
+                                <span class="menu-title">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('employee.details',Auth::user()->employee->id)}}">
+                                <i class="menu-icon mdi mdi-account-multiple"></i>
+                                <span class="menu-title">View Details</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('leave.applications')}}">
+                                <i class="menu-icon mdi mdi-file-document-box"></i>
+                                <span class="menu-title">Leave Applications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="attendance.php">
+                                <i class="menu-icon mdi mdi-table"></i>
+                                <span class="menu-title">Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('reports')}}">
+                                <i class="menu-icon mdi mdi-chart-line"></i>
+                                <span class="menu-title">Reports</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="menu-icon mdi mdi-trophy-variant"></i>
+                                <span class="menu-title">Goals</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="menu-icon mdi mdi-file-document"></i>
+                                <span class="menu-title">Official Letters</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="menu-icon mdi mdi-account"></i>
+                                <span class="menu-title">Feedback</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('organisations.general.information')}}">
+                                <i class="menu-icon mdi mdi-home-modern"></i>
+                                <span class="menu-title">Organization</span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
 

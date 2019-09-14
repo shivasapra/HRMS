@@ -12,7 +12,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('organisations.locations')}}">Locations</a>
                         </li>
-                        <a class="btn btn-primary float-right ml-auto" href="#" data-toggle="modal" data-target="#add_location">Add</a>
+                        @if(Auth::user()->admin)
+                            <a class="btn btn-primary float-right ml-auto" href="#" data-toggle="modal" data-target="#add_location">Add</a>
+                        @endif
                     </ul>
                     <div class="row">
                         @foreach(App\Organisations::all() as $o)
