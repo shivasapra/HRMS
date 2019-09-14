@@ -13,7 +13,7 @@
                             <a class="nav-link active" href="{{route('organisations.locations')}}">Locations</a>
                         </li>
                         @if(Auth::user()->admin)
-                            <a class="btn btn-primary float-right ml-auto" href="#" data-toggle="modal" data-target="#add_location">Add</a>
+                            <a class="btn btn-primary float-right ml-auto" href="javascript:void(0)" data-toggle="modal" data-target="#add_location">Add</a>
                         @endif
                     </ul>
                     <div class="row">

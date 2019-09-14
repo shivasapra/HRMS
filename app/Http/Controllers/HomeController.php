@@ -9,6 +9,7 @@ use App\Holidays;
 use Carbon\Carbon;
 use Auth;
 Use App\Reports;
+use App\Letters;
 
 class HomeController extends Controller
 {
@@ -103,5 +104,30 @@ class HomeController extends Controller
 
     public function profile(){
         return view('profile');
+    }
+
+    public function letters(){
+        return view('letters');
+    }
+
+    public function addLetter(Letters $l, Request $request){
+        $l->name = $request->name;
+
+        $pdf = $request->pdf;
+        $pdf_new_name = time().$pdf->getClientOriginalName();
+        $pdf->move('uploads/pdf',$pdf_new_name);
+        $l->pdf = 'uploads/pdf/'.$pdf_new_name;
+        $l->save();
+        return redirect()->back();
+    }
+
+    public function sendLetters(Request $request){
+//        dd($request->all());
+
+        if(!$request->has('users')){
+            return view('selectEmployeeForLetter')->with('letters',collect($request->letters));
+        }else{
+            dd($request->all());
+        }
     }
 }

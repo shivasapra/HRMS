@@ -232,7 +232,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="official-letters.php">
+                            <a class="nav-link" href="{{route('letters')}}">
                                 <i class="menu-icon mdi mdi-file-document"></i>
                                 <span class="menu-title">Official Letters</span>
                             </a>
