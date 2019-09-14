@@ -30,7 +30,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         // dd(Carbon::now()->format('l, d F, Y'));
         return view('home');
     }

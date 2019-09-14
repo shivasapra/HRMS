@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
             <div class="card card-statistics">
-                <a href="view-employee.php" class="hover-underline-none">
+                <a href="{{route('employee.index')}}" class="hover-underline-none">
                 <div class="card-body">
                     <div class="clearfix">
                         <div class="float-left">
@@ -12,7 +12,7 @@
                         <div class="float-right">
                             <p class="mb-0 text-right text-dark">Employees</p>
                             <div class="fluid-container">
-                                <h3 class="font-weight-medium text-right mb-0 h1 text-dark">246</h3>
+                                <h3 class="font-weight-medium text-right mb-0 h1 text-dark">{{App\Employee::all()->count()}}</h3>
                             </div>
                         </div>
                     </div>
@@ -118,38 +118,21 @@
                 <!--weather card-->
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="mb-4 h3"><i class="mdi mdi-cake"></i> Upcoming Birthdays</h2><hr>
+                        <h2 class="mb-4 h3"><i class="mdi mdi-cake"></i>Birthdays</h2><hr>
                         <div class="h-447 custom-scroll">
-                        <p>Today's Birthday</p>
-                        <div class="media">
-                            <img class="mr-3" src="{{asset('app/images/faces/face20.jpg')}}" alt="pdf">
-                            <div class="media-body text-left align-self-center">
-                                <h3 class="mt-0 mb-1 h4">Deepika Sharwan</h3>
-                                <p class="m-0"><span class="text-dark-red">24 May | </span> <span class="text-gray"> 24 Years old</span></p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img class="mr-3" src="{{asset('app/images/faces/face21.jpg')}}" alt="pdf">
-                            <div class="media-body text-left align-self-center">
-                                <h3 class="mt-0 mb-1 h4">Ankit Mahajan</h3>
-                                <p class="m-0"><span class="text-dark-red">09 December | </span> <span class="text-gray"> 27 Years old</span></p>
-                            </div>
-                        </div>
-                        <p class="mt-4">Upcoming</p>
-                        <div class="media">
-                            <img class="mr-3" src="{{asset('app/images/faces/face22.jpg')}}" alt="pdf">
-                            <div class="media-body text-left align-self-center">
-                                <h3 class="mt-0 mb-1 h4">Deepika Sharwan</h3>
-                                <p class="m-0"><span class="text-dark-red">24 May | </span> <span class="text-gray"> 24 Years old</span></p>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <img class="mr-3" src="{{asset('app/images/faces/face23.jpg')}}" alt="pdf">
-                            <div class="media-body text-left align-self-center">
-                                <h3 class="mt-0 mb-1 h4">Ankit Mahajan</h3>
-                                <p class="m-0"><span class="text-dark-red">09 December | </span> <span class="text-gray"> 27 Years old</span></p>
-                            </div>
-                        </div>
+                            <p>Today's Birthday</p>
+                            @php
+                                $date = Carbon\Carbon::now()->format('m-d');
+                            @endphp
+                            @foreach(App\Employee::where('DOB','LIKE','%'.$date)->get() as $e)
+                                <div class="media">
+                                    <img class="mr-3" src="{{asset($e->avatar)}}" alt="pdf">
+                                    <div class="media-body text-left align-self-center">
+                                        <h3 class="mt-0 mb-1 h4">{{$e->user->name}}</h3>
+                                        <p class="m-0"><span class="text-dark-red">{{Carbon\Carbon::now()->format('d M')}} | </span> <span class="text-gray"> {{Carbon\Carbon::now()->diffInYears(Carbon\Carbon::parse($e->DOB))}}</span></p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
