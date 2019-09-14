@@ -47,4 +47,7 @@ class Employee extends Model
     public function Reports(){
         return $this->hasMany('App\Reports');
     }
+    public function EmployeeLetters(){
+        return $this->hasMany('App\EmployeeLetters');
+    }
 }

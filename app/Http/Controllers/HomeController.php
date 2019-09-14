@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Auth;
 Use App\Reports;
 use App\Letters;
+use App\EmployeeLetters;
 
 class HomeController extends Controller
 {
@@ -127,7 +128,15 @@ class HomeController extends Controller
         if(!$request->has('users')){
             return view('selectEmployeeForLetter')->with('letters',collect($request->letters));
         }else{
-            dd($request->all());
+            foreach($request->users as $e){
+                foreach($request->letters as $l){
+                   $el = new EmployeeLetters;
+                   $el->employee_id = $e;
+                   $el->letter_id = $l;
+                   $el->save();
+                }
+            }
+            return route('letters');
         }
     }
 }

@@ -27,7 +27,7 @@
                                             <td>
                                                 <div class="form-check form-check-flat d-inline-block input-lg">
                                                     <label class="form-check-label">
-                                                        <input type="checkbox" value="{{$user->id}}" name="users[]" class="form-check-input">
+                                                        <input type="checkbox" value="{{$user->employee->id}}" name="users[]" class="form-check-input">
                                                     </label>
                                                 </div>
                                             </td>

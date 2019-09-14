@@ -5,7 +5,9 @@
             <div class="card">
                 <div class="card-header">
                     Official Letters
-                    <a class="btn btn-primary float-right ml-auto pull-right" href="javascript:void(0)" data-toggle="modal" data-target="#add_letter">Add</a>
+                    @if(Auth::user()->admin)
+                        <a class="btn btn-primary float-right ml-auto pull-right" href="javascript:void(0)" data-toggle="modal" data-target="#add_letter">Add</a>
+                    @endif
                 </div>
                 <hr>
                 <form id="form" action="{{route('send.letters')}}" method="post">
@@ -16,11 +18,13 @@
                                 @foreach($chunk as $c)
                                     <div class="col-md-6">
                                         <div class="media">
-                                            <div class="form-check form-check-flat d-inline-block input-lg">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" value="{{$c->id}}" name="letters[]" class="form-check-input">
-                                                </label>
-                                            </div>
+                                            @if(Auth::user()->admin)
+                                                <div class="form-check form-check-flat d-inline-block input-lg">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" value="{{$c->id}}" name="letters[]" class="form-check-input">
+                                                    </label>
+                                                </div>
+                                            @endif
                                             <img class="mr-3" src="{{asset('app/images/icon-pdf.png')}}" alt="pdf">
                                             <div class="media-body text-left align-self-center">
                                                 <h3 class="mt-0 mb-1 h4">{{$c->name}}</h3>
@@ -37,9 +41,11 @@
                               @endforeach
                             </div>
                         @endforeach
-                        <div class="text-center">
-                            <button type="button" onclick="check();"  class="btn btn-success">Send</button>
-                        </div>
+                        @if(Auth::user()->admin)
+                            <div class="text-center">
+                                <button type="button" onclick="check();"  class="btn btn-success">Send</button>
+                            </div>
+                        @endif
                     </div>
                 </form>
             </div>
