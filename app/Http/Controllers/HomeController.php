@@ -161,4 +161,8 @@ class HomeController extends Controller
         $goal->delete();
         return redirect()->back();
     }
+
+    public function feedback(){
+        return view('feedback');
+    }
 }

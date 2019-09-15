@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/goals/','HomeController@goals')->name('goals');
     Route::post('/add-goal/','HomeController@addGoal')->name('add.goal');
     Route::get('/delete-goal/{goal}','HomeController@deleteGoal')->name('delete.goal');
+
+    Route::get('/feedback/','HomeController@feedback')->name('feedback');
     
 
 });
