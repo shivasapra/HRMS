@@ -208,7 +208,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="attendance.php">
+                            <a class="nav-link" href="{{route('attendance')}}">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Attendance</span>
                             </a>
@@ -275,7 +275,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="attendance.php">
+                            <a class="nav-link" href="{{route('attendance')}}">
                                 <i class="menu-icon mdi mdi-table"></i>
                                 <span class="menu-title">Attendance</span>
                             </a>

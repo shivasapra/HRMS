@@ -94,5 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/add-feedback/','HomeController@addFeedback')->name('add.feedback');
     Route::get('/delete-feedback/{feedback}','HomeController@deleteFeedback')->name('delete.feedback');
 
+    Route::get('/attendance/','HomeController@Attendance')->name('attendance');
+
 
 });

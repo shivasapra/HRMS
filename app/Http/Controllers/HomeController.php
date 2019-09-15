@@ -179,4 +179,8 @@ class HomeController extends Controller
         $feedback->delete();
         return redirect()->back();
     }
+
+    public function Attendance(){
+        return view('attendance');
+    }
 }
