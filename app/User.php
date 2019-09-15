@@ -50,4 +50,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Feedbacks');
     }
 
+    public function Attendance(){
+        return $this->belongsTo('App\Attendance');
+    }
+
 }
