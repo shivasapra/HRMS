@@ -46,4 +46,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Goals');
     }
 
+    public function feedbacks(){
+        return $this->hasMany('App\Feedbacks');
+    }
+
 }

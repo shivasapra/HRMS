@@ -244,6 +244,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('feedback')}}">
+                                <i class="menu-icon mdi mdi-account"></i>
+                                <span class="menu-title">Employee Feedbacks</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('organisations.general.information')}}">
                                 <i class="menu-icon mdi mdi-home-modern"></i>
                                 <span class="menu-title">Organization</span>

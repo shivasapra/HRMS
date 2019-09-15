@@ -12,6 +12,7 @@ Use App\Reports;
 use App\Letters;
 use App\EmployeeLetters;
 use App\Goals;
+use App\Feedbacks;
 
 class HomeController extends Controller
 {
@@ -164,5 +165,18 @@ class HomeController extends Controller
 
     public function feedback(){
         return view('feedback');
+    }
+
+    public function addFeedback(Request $request,Feedbacks $f){
+        $f->user_id = Auth::user()->id;
+        $f->feedback = $request->feedback;
+        $f->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteFeedback(Feedbacks $feedback){
+        $feedback->delete();
+        return redirect()->back();
     }
 }
