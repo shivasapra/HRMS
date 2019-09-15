@@ -87,6 +87,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/send-letters/','HomeController@sendLetters')->name('send.letters');
 
     Route::get('/goals/','HomeController@goals')->name('goals');
+    Route::post('/add-goal/','HomeController@addGoal')->name('add.goal');
+    Route::get('/delete-goal/{goal}','HomeController@deleteGoal')->name('delete.goal');
     
 
 });

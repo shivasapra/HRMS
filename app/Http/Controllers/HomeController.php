@@ -11,6 +11,7 @@ use Auth;
 Use App\Reports;
 use App\Letters;
 use App\EmployeeLetters;
+use App\Goals;
 
 class HomeController extends Controller
 {
@@ -142,5 +143,22 @@ class HomeController extends Controller
 
     public function goals(){
         return view('goals');
+    }
+
+    public function addGoal(Request $request, Goals $g){
+        $g->user_id = Auth::id();
+        $g->title = $request->title;
+        $g->description = $request->description;
+        $g->from = $request->from;
+        $g->to = $request->to;
+        $g->visibility = $request->visibility;
+        $g->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteGoal(Goals $goal){
+        $goal->delete();
+        return redirect()->back();
     }
 }
