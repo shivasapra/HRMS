@@ -85,6 +85,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/letters/','HomeController@letters')->name('letters');
     Route::post('/add-letter/','HomeController@addLetter')->name('add.letter');
     Route::post('/send-letters/','HomeController@sendLetters')->name('send.letters');
+
+    Route::get('/goals/','HomeController@goals')->name('goals');
     
 
 });

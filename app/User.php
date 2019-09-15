@@ -41,4 +41,9 @@ class User extends Authenticatable
     public function employee(){
         return $this->hasOne('App\Employee');
     }
+
+    public function goals(){
+        return $this->hasMany('App\Goals');
+    }
+
 }

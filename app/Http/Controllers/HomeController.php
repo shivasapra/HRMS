@@ -139,4 +139,8 @@ class HomeController extends Controller
             return route('letters');
         }
     }
+
+    public function goals(){
+        return view('goals');
+    }
 }

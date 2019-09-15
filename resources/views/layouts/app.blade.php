@@ -220,7 +220,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="goals.php">
+                            <a class="nav-link" href="{{route('goals')}}">
                                 <i class="menu-icon mdi mdi-trophy-variant"></i>
                                 <span class="menu-title">Goals</span>
                             </a>
@@ -281,7 +281,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{route('goals')}}">
                                 <i class="menu-icon mdi mdi-trophy-variant"></i>
                                 <span class="menu-title">Goals</span>
                             </a>
