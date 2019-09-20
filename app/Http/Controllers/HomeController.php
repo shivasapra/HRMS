@@ -9,6 +9,10 @@ use App\Holidays;
 use Carbon\Carbon;
 use Auth;
 Use App\Reports;
+use App\Letters;
+use App\EmployeeLetters;
+use App\Goals;
+use App\Feedbacks;
 
 class HomeController extends Controller
 {
@@ -28,7 +32,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {
         // dd(Carbon::now()->format('l, d F, Y'));
         return view('home');
     }
@@ -99,5 +103,84 @@ class HomeController extends Controller
     public function deleteReport(Reports $r){
         $r->delete();
         return redirect()->back();
+    }
+
+    public function profile(){
+        return view('profile');
+    }
+
+    public function letters(){
+        return view('letters');
+    }
+
+    public function addLetter(Letters $l, Request $request){
+        $l->name = $request->name;
+
+        $pdf = $request->pdf;
+        $pdf_new_name = time().$pdf->getClientOriginalName();
+        $pdf->move('uploads/pdf',$pdf_new_name);
+        $l->pdf = 'uploads/pdf/'.$pdf_new_name;
+        $l->save();
+        return redirect()->back();
+    }
+
+    public function sendLetters(Request $request){
+//        dd($request->all());
+
+        if(!$request->has('users')){
+            return view('selectEmployeeForLetter')->with('letters',collect($request->letters));
+        }else{
+            foreach($request->users as $e){
+                foreach($request->letters as $l){
+                   $el = new EmployeeLetters;
+                   $el->employee_id = $e;
+                   $el->letter_id = $l;
+                   $el->save();
+                }
+            }
+            return route('letters');
+        }
+    }
+
+    public function goals(){
+        return view('goals');
+    }
+
+    public function addGoal(Request $request, Goals $g){
+        $g->user_id = Auth::id();
+        $g->title = $request->title;
+        $g->description = $request->description;
+        $g->from = $request->from;
+        $g->to = $request->to;
+        $g->visibility = $request->visibility;
+        $g->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteGoal(Goals $goal){
+        $goal->delete();
+        return redirect()->back();
+    }
+
+    public function feedback(){
+        return view('feedback');
+    }
+
+    public function addFeedback(Request $request,Feedbacks $f){
+        $f->user_id = Auth::user()->id;
+        $f->feedback = $request->feedback;
+        $f->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteFeedback(Feedbacks $feedback){
+        $feedback->delete();
+        return redirect()->back();
+    }
+
+    public function Attendance(){
+        return view('attendance');
     }
 }

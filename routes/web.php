@@ -79,6 +79,22 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/reports','HomeController@reports')->name('reports');
     Route::post('/add-report','HomeController@addReport')->name('add.report');
     Route::get('/delete-report/{r}','HomeController@deleteReport')->name('report.delete');
-    
+
+    Route::get('/profile/','HomeController@profile')->name('profile');
+
+    Route::get('/letters/','HomeController@letters')->name('letters');
+    Route::post('/add-letter/','HomeController@addLetter')->name('add.letter');
+    Route::post('/send-letters/','HomeController@sendLetters')->name('send.letters');
+
+    Route::get('/goals/','HomeController@goals')->name('goals');
+    Route::post('/add-goal/','HomeController@addGoal')->name('add.goal');
+    Route::get('/delete-goal/{goal}','HomeController@deleteGoal')->name('delete.goal');
+
+    Route::get('/feedback/','HomeController@feedback')->name('feedback');
+    Route::post('/add-feedback/','HomeController@addFeedback')->name('add.feedback');
+    Route::get('/delete-feedback/{feedback}','HomeController@deleteFeedback')->name('delete.feedback');
+
+    Route::get('/attendance/','HomeController@Attendance')->name('attendance');
+
 
 });
